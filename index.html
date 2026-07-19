@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blue Edge Logistics | Smart Freight & Shipping Solutions</title>
+  <meta name="description" content="Blue Edge Logistics delivers reliable freight, courier and shipment tracking solutions across land, air and sea." />
+
+  <!-- Fonts: Unbounded (display — bold, geometric, evokes
+       stenciled cargo/container typography), Plus Jakarta Sans
+       (body), JetBrains Mono (data/utility) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/components.css" />
+  <link rel="stylesheet" href="assets/css/responsive.css" />
+
+  <link rel="icon" type="image/png" href="assets/images/favicon.png" />
+
+  <!-- Iconify: icon web component, loaded once, used everywhere.
+       Set includes logistics-relevant marks (truck, pin, package)
+       we'll reuse across Services/Gallery later. -->
+  <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js" defer></script>
+</head>
+<body>
+
+  <!-- ===================== HEADER ===================== -->
+  <header class="site-header" id="site-header">
+
+    <!-- Utility bar: contact strip -->
+    <div class="utility-bar">
+      <div class="container utility-bar__inner">
+        <ul class="utility-bar__contact">
+          <li>
+            <a href="mailto:support@blueedgelogistics.com">
+              <iconify-icon icon="ph:envelope-simple-bold" class="icon" aria-hidden="true"></iconify-icon>
+              support@blueedgelogistics.com
+            </a>
+          </li>
+          <li>
+            <iconify-icon icon="ph:map-pin-line-bold" class="icon" aria-hidden="true"></iconify-icon>
+            London, United Kingdom
+          </li>
+        </ul>
+
+        <ul class="utility-bar__social">
+          <li><a href="#" aria-label="Blue Edge Logistics on Facebook"><iconify-icon icon="ph:facebook-logo-bold" aria-hidden="true"></iconify-icon></a></li>
+          <li><a href="#" aria-label="Blue Edge Logistics on Instagram"><iconify-icon icon="ph:instagram-logo-bold" aria-hidden="true"></iconify-icon></a></li>
+          <li><a href="#" aria-label="Blue Edge Logistics on X" ><iconify-icon icon="ph:x-logo-bold" aria-hidden="true"></iconify-icon></a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Main nav -->
+    <div class="main-nav">
+      <div class="container main-nav__inner">
+
+        <a href="index.html" class="brand" aria-label="Blue Edge Logistics home">
+          <img src="assets/css/images/WhatsApp Image 2026-07-19 at 08.20.53.jpeg" alt="Blue Edge Logistics" class="brand__logo" />
+        </a>
+
+        <nav class="primary-nav" aria-label="Primary">
+          <ul>
+            <li><a href="index.html" class="is-active">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="tracking.html">Tracking</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </nav>
+
+        <div class="main-nav__actions">
+          <a href="quote.html" class="btn btn--primary btn--sm main-nav__quote">Get a Quote</a>
+
+          <!-- Slide-out panel trigger: serves as mobile nav + desktop info panel -->
+          <button
+            type="button"
+            class="panel-toggle"
+            id="panel-toggle"
+            aria-expanded="false"
+            aria-controls="side-panel"
+            aria-label="Open menu"
+          >
+            <iconify-icon icon="ph:list-bold" class="panel-toggle__icon panel-toggle__icon--menu" aria-hidden="true"></iconify-icon>
+            <iconify-icon icon="ph:x-bold" class="panel-toggle__icon panel-toggle__icon--close" aria-hidden="true"></iconify-icon>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- ===================== SLIDE-OUT PANEL ===================== -->
+  <div class="panel-overlay" id="panel-overlay" hidden></div>
+
+  <aside class="side-panel" id="side-panel" aria-hidden="true" aria-label="Menu and contact information">
+    <button type="button" class="side-panel__close" id="side-panel-close" aria-label="Close menu">
+      <iconify-icon icon="ph:x-bold" aria-hidden="true"></iconify-icon>
+    </button>
+
+    <img src="assets/css/images/WhatsApp Image 2026-07-19 at 08.20.53.jpeg" alt="Blue Edge Logistics" class="side-panel__logo" />
+
+    <!-- Nav links: only visible on mobile/tablet, where the primary-nav is hidden -->
+    <nav class="side-panel__nav" aria-label="Mobile primary">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="tracking.html">Tracking</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="quote.html">Get a Quote</a></li>
+      </ul>
+    </nav>
+
+    <h2 class="side-panel__heading">Welcome to Blue Edge Logistics</h2>
+    <p class="side-panel__text">
+      We move freight across land, air and sea with the same standard every time:
+      on schedule, fully tracked, and handled with care from pickup to delivery.
+    </p>
+
+    <div class="side-panel__contact">
+      <h3><iconify-icon icon="ph:phone-call-bold" aria-hidden="true"></iconify-icon> Contact Us</h3>
+      <a href="mailto:support@blueedgelogistics.com">support@blueedgelogistics.com</a>
+      <span>Working Hours: 7:00am &ndash; 4:00pm</span>
+    </div>
+
+    <ul class="side-panel__social">
+      <li><a href="#" aria-label="Blue Edge Logistics on Facebook"><iconify-icon icon="ph:facebook-logo-bold" aria-hidden="true"></iconify-icon></a></li>
+      <li><a href="#" aria-label="Blue Edge Logistics on X"><iconify-icon icon="ph:x-logo-bold" aria-hidden="true"></iconify-icon></a></li>
+      <li><a href="#" aria-label="Blue Edge Logistics on LinkedIn"><iconify-icon icon="ph:linkedin-logo-bold" aria-hidden="true"></iconify-icon></a></li>
+    </ul>
+  </aside>
+
+  <!-- ===================== HERO ===================== -->
+  <section class="hero">
+    <div class="container hero__inner">
+
+      <div class="hero__content">
+        <p class="eyebrow">Smart Solutions</p>
+        <h1 class="hero__title">
+          Streamlined transportation<br />
+          for a better tomorrow
+        </h1>
+        <p class="hero__subtext">
+          For over a decade, we've delivered dependable freight, courier and
+          logistics solutions &mdash; built around real-time visibility from
+          pickup to final delivery.
+        </p>
+        <div class="hero__actions">
+          <a href="tracking.html" class="btn btn--primary">
+            Track Shipment
+            <iconify-icon icon="ph:arrow-right-bold" aria-hidden="true"></iconify-icon>
+          </a>
+          <a href="quote.html" class="btn btn--outline">
+            Get a Quote
+            <iconify-icon icon="ph:arrow-up-right-bold" aria-hidden="true"></iconify-icon>
+          </a>
+        </div>
+      </div>
+
+      <div class="hero__media" id="hero-media">
+        <div class="hero__media-clip">
+          <img src="assets/css/images/360_F_315664059_3U5rIfjwAR5b2rIlJdchwl5JsbE8uljn.jpg" alt="Cargo plane departing above a container yard with a freight truck in the foreground" class="hero__image" />
+        </div>
+        <div class="hero__slash" aria-hidden="true"></div>
+
+        <!-- Signature element: a live-looking tracking preview,
+             because the product this company sells IS visibility
+             into a shipment — the hero should say that directly,
+             not just show a truck. -->
+        <div class="tracking-preview" id="tracking-preview" aria-hidden="true">
+          <div class="tracking-preview__header">
+            <span class="tracking-preview__code">SPW-483920</span>
+            <span class="tracking-preview__status">
+              <span class="tracking-preview__dot"></span>
+              In Transit
+            </span>
+          </div>
+          <div class="tracking-preview__route">
+            <div class="tracking-preview__point">
+              <iconify-icon icon="ph:circle-fill" class="tracking-preview__point-icon tracking-preview__point-icon--done"></iconify-icon>
+              <span>Lagos</span>
+            </div>
+            <div class="tracking-preview__line"></div>
+            <div class="tracking-preview__point">
+              <iconify-icon icon="ph:map-pin-fill" class="tracking-preview__point-icon tracking-preview__point-icon--current"></iconify-icon>
+              <span>Abuja</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="hero__dots" aria-hidden="true">
+      <span></span><span></span><span></span>
+      <span></span><span></span><span></span>
+      <span></span><span></span><span></span>
+    </div>
+  </section>
+
+  <script src="assets/js/main.js" defer></script>
+  <script src="assets/js/animations.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,513 @@
+/* =========================================================
+   BLUE EDGE LOGISTICS — BASE STYLESHEET
+   Design tokens, reset, typography, layout primitives,
+   header and hero. Component-level UI (buttons, panel,
+   badges) lives in components.css. Breakpoints live in
+   responsive.css.
+   ========================================================= */
+
+/* -----------------------------------------------------------
+   1. DESIGN TOKENS
+   Centralizing every color/spacing/type decision here means
+   the entire site (and later, the admin dashboard) can pull
+   from one source of truth. Change a token once, it cascades
+   everywhere — no hunting through files for hardcoded hexes.
+----------------------------------------------------------- */
+:root {
+  /* Color */
+  --color-primary: #4B21E2;
+  --color-primary-dark: #34129F;
+  --color-primary-tint: #EFE9FD;
+  --color-accent: #FF4B3E;
+
+  --color-ink: #12121A;
+  --color-ink-soft: #4A4A57;
+  --color-bg: #FFFFFF;
+  --color-surface: #F6F5FA;
+  --color-border: #E4E2EE;
+  --color-white: #FFFFFF;
+
+  /* Type */
+  --font-display: 'Unbounded', sans-serif;
+  --font-body: 'Plus Jakarta Sans', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Spacing scale (used for section padding, gaps) */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2.5rem;
+  --space-xl: 4rem;
+  --space-2xl: 6rem;
+
+  /* Layout */
+  --container-width: 1240px;
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 24px;
+
+  /* Motion */
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --duration-fast: 180ms;
+  --duration-base: 320ms;
+
+  /* Computed header height, set/read by JS so the hero and
+     any fixed offsets stay accurate if the header height
+     ever changes (e.g. utility bar wraps on small screens) */
+  --header-height: 116px;
+
+  /* Semantic status color — used for the live tracking-status
+     indicator only. Kept separate from the brand palette
+     because it communicates real shipment state, not decoration. */
+  --color-status-active: #16A34A;
+
+  /* Type scale — fluid via clamp() so headings don't need
+     separate breakpoint overrides for size (only for layout
+     changes like stacking). Weight contrast is deliberate:
+     800 for the hero only, 700 for section heads, 600 for
+     subheads/nav, 400/500 for body — keeps a clear hierarchy
+     instead of everything defaulting to 700. */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: clamp(1.0625rem, 1rem + 0.3vw, 1.1875rem);
+  --text-xl: clamp(1.25rem, 1.1rem + 0.7vw, 1.5rem);
+  --text-2xl: clamp(1.5rem, 1.3rem + 1vw, 1.875rem);
+  --text-3xl: clamp(1.875rem, 1.5rem + 1.6vw, 2.5rem);
+  --text-4xl: clamp(2.25rem, 1.7rem + 2.4vw, 3.25rem);
+}
+
+/* -----------------------------------------------------------
+   2. RESET
+----------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-ink);
+  background: var(--color-bg);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--color-ink);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+/* Visible keyboard focus everywhere — never suppressed.
+   This is a non-negotiable accessibility floor. */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+/* -----------------------------------------------------------
+   3. LAYOUT PRIMITIVES
+----------------------------------------------------------- */
+.container {
+  width: 100%;
+  max-width: var(--container-width);
+  margin-inline: auto;
+  padding-inline: var(--space-md);
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  margin-bottom: var(--space-sm);
+}
+
+/* -----------------------------------------------------------
+   4. HEADER
+----------------------------------------------------------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+}
+
+.utility-bar {
+  background: var(--color-primary);
+  color: var(--color-white);
+  font-size: 0.8125rem;
+}
+
+.utility-bar__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-block: 0.6rem;
+}
+
+.utility-bar__contact {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+}
+
+.utility-bar__contact li {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.utility-bar__contact a:hover {
+  text-decoration: underline;
+}
+
+.utility-bar__contact .icon {
+  font-size: 1rem;
+  color: var(--color-white);
+  opacity: 0.9;
+}
+
+.utility-bar__social {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.utility-bar__social iconify-icon {
+  font-size: 1rem;
+  color: var(--color-white);
+  opacity: 0.9;
+  transition: opacity var(--duration-fast) var(--ease-standard);
+}
+
+.utility-bar__social a:hover iconify-icon {
+  opacity: 1;
+}
+
+.main-nav {
+  background: var(--color-white);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.main-nav__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-block: var(--space-sm);
+  gap: var(--space-lg);
+}
+
+.brand__logo {
+  height: 40px;
+  width: auto;
+}
+
+.primary-nav ul {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+}
+
+.primary-nav a {
+  font-weight: 500;
+  font-size: 0.9375rem;
+  color: var(--color-ink-soft);
+  position: relative;
+  padding-block: 0.4rem;
+  transition: color var(--duration-fast) var(--ease-standard);
+}
+
+.primary-nav a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 2px;
+  background: var(--color-primary);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--duration-fast) var(--ease-standard);
+}
+
+.primary-nav a:hover,
+.primary-nav a.is-active {
+  color: var(--color-primary);
+}
+
+.primary-nav a:hover::after,
+.primary-nav a.is-active::after {
+  transform: scaleX(1);
+}
+
+.main-nav__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+/* -----------------------------------------------------------
+   5. HERO
+----------------------------------------------------------- */
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding-block: var(--space-2xl) var(--space-xl);
+}
+
+.hero__inner {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  align-items: center;
+  gap: var(--space-xl);
+  min-height: 560px;
+}
+
+.hero__content {
+  max-width: 480px;
+}
+
+.hero__title {
+  font-size: var(--text-4xl);
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  margin-bottom: var(--space-md);
+}
+
+.hero__subtext {
+  color: var(--color-ink-soft);
+  font-size: var(--text-lg);
+  line-height: 1.65;
+  margin-bottom: var(--space-lg);
+  max-width: 42ch;
+}
+
+.hero__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+}
+
+.hero__media {
+  position: relative;
+  height: 100%;
+  min-height: 480px;
+}
+
+/* The signature diagonal cut: pure CSS clip-path rather than
+   a pre-cropped image, so it stays crisp and adjustable at
+   any viewport size instead of relying on a fixed asset. */
+.hero__media-clip {
+  position: absolute;
+  inset: 0;
+  clip-path: polygon(18% 0, 100% 0, 100% 100%, 0% 100%);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.hero__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero__slash {
+  position: absolute;
+  top: 0;
+  left: 12%;
+  width: 44px;
+  height: 100%;
+  background: linear-gradient(160deg, var(--color-primary), var(--color-primary-dark));
+  clip-path: polygon(60% 0, 100% 0, 40% 100%, 0% 100%);
+}
+
+.hero__dots {
+  position: absolute;
+  left: var(--space-md);
+  bottom: var(--space-lg);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+}
+
+.hero__dots span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  opacity: 0.7;
+}
+
+/* -----------------------------------------------------------
+   TRACKING PREVIEW — hero signature element
+   A floating glass card over the hero image, styled to look
+   like a live shipment status readout. Positioned to overlap
+   the image edge so it reads as "surfacing" from the photo,
+   not just sitting on top of it.
+----------------------------------------------------------- */
+.tracking-preview {
+  position: absolute;
+  left: -32px;
+  bottom: 48px;
+  z-index: 2;
+  min-width: 232px;
+  padding: 1.1rem 1.3rem;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: var(--radius-md);
+  box-shadow: 0 20px 45px -18px rgba(18, 18, 26, 0.35);
+  animation: trackingFloat 4.5s ease-in-out infinite;
+}
+
+.tracking-preview__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  margin-bottom: 0.85rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px dashed var(--color-border);
+}
+
+.tracking-preview__code {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--color-ink);
+  letter-spacing: 0.01em;
+}
+
+.tracking-preview__status {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-status-active);
+}
+
+.tracking-preview__dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--color-status-active);
+  animation: statusPulse 2s ease-out infinite;
+}
+
+.tracking-preview__route {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.tracking-preview__point {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  color: var(--color-ink-soft);
+}
+
+.tracking-preview__point-icon {
+  font-size: 0.875rem;
+}
+
+.tracking-preview__point-icon--done {
+  color: var(--color-status-active);
+}
+
+.tracking-preview__point-icon--current {
+  color: var(--color-primary);
+}
+
+.tracking-preview__line {
+  flex: 1;
+  height: 2px;
+  margin-bottom: 1.1rem;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--color-border) 0,
+    var(--color-border) 4px,
+    transparent 4px,
+    transparent 8px
+  );
+}
+
+@keyframes trackingFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes statusPulse {
+  0% { box-shadow: 0 0 0 0 rgba(22, 163, 74, 0.45); }
+  70% { box-shadow: 0 0 0 8px rgba(22, 163, 74, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(22, 163, 74, 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tracking-preview,
+  .tracking-preview__dot {
+    animation: none;
+  }
+}

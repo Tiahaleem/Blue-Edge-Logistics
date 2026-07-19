@@ -1,0 +1,121 @@
+/* =========================================================
+   RESPONSIVE
+   Breakpoints: 1024px (tablet), 768px (mobile landscape),
+   480px (mobile portrait). Mobile-first values live in the
+   base files; this file only overrides what changes.
+   ========================================================= */
+
+/* -----------------------------------------------------------
+   TABLET — 1024px
+   Primary nav links move into the side panel; the panel
+   toggle becomes the only way to reach navigation.
+----------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .primary-nav {
+    display: none;
+  }
+
+  .side-panel__nav {
+    display: block;
+  }
+
+  .main-nav__quote {
+    display: none;
+  }
+
+  .hero__inner {
+    gap: var(--space-lg);
+  }
+
+  .tracking-preview {
+    left: -20px;
+  }
+}
+
+/* -----------------------------------------------------------
+   MOBILE LANDSCAPE — 768px
+   Hero stacks vertically; utility bar drops the social icons
+   to save space (contact info stays, it matters more).
+----------------------------------------------------------- */
+@media (max-width: 768px) {
+  .utility-bar__social {
+    display: none;
+  }
+
+  .utility-bar__contact li:last-child {
+    display: none; /* location line — email is the priority contact */
+  }
+
+  .hero {
+    padding-block: var(--space-xl) var(--space-lg);
+  }
+
+  .hero__inner {
+    grid-template-columns: 1fr;
+  }
+
+  .hero__content {
+    max-width: 100%;
+    text-align: center;
+  }
+
+  .hero__actions {
+    justify-content: center;
+  }
+
+  .hero__media {
+    min-height: 320px;
+    order: -1;
+  }
+
+  .hero__media-clip {
+    clip-path: polygon(0 8%, 100% 0, 100% 100%, 0 100%);
+    border-radius: var(--radius-md);
+  }
+
+  .hero__slash {
+    display: none;
+  }
+
+  .hero__dots {
+    display: none;
+  }
+
+  /* On mobile the card can't hang off the image edge — center
+     it and dock it to the bottom instead of floating outside. */
+  .tracking-preview {
+    left: 50%;
+    bottom: var(--space-sm);
+    transform: translateX(-50%);
+    min-width: 200px;
+    animation: none;
+  }
+}
+
+/* -----------------------------------------------------------
+   MOBILE PORTRAIT — 480px
+----------------------------------------------------------- */
+@media (max-width: 480px) {
+  .utility-bar__inner {
+    justify-content: center;
+  }
+
+  .brand__logo {
+    height: 32px;
+  }
+
+  .side-panel {
+    width: 100%;
+    padding: var(--space-lg) var(--space-md);
+  }
+
+  .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .hero__actions {
+    flex-direction: column;
+    width: 100%;
+  }
+}

@@ -1,0 +1,274 @@
+/* =========================================================
+   COMPONENTS
+   Reusable UI pieces referenced across multiple pages
+   (buttons, slide-out panel). Keep anything here generic —
+   page-specific one-off styling belongs in style.css instead.
+   ========================================================= */
+
+/* -----------------------------------------------------------
+   BUTTONS
+----------------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.9375rem;
+  padding: 0.85rem 1.6rem;
+  border-radius: var(--radius-sm);
+  transition: background var(--duration-fast) var(--ease-standard),
+              color var(--duration-fast) var(--ease-standard),
+              transform var(--duration-fast) var(--ease-standard),
+              box-shadow var(--duration-fast) var(--ease-standard);
+}
+
+.btn iconify-icon {
+  font-size: 1.05em;
+  transition: transform var(--duration-fast) var(--ease-standard);
+}
+
+.btn:hover iconify-icon {
+  transform: translate(2px, -2px);
+}
+
+.btn--sm {
+  padding: 0.6rem 1.15rem;
+  font-size: 0.875rem;
+}
+
+.btn--primary {
+  background: var(--color-primary);
+  color: var(--color-white);
+}
+
+.btn--primary:hover {
+  background: var(--color-primary-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px -8px rgba(75, 33, 226, 0.55);
+}
+
+.btn--outline {
+  background: transparent;
+  color: var(--color-ink);
+  border: 1.5px solid var(--color-border);
+}
+
+.btn--outline:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+/* Nav-specific tweak: keep the "Get a Quote" button visually
+   lighter than a full primary CTA so it doesn't compete with
+   the hero's own buttons. */
+.main-nav__quote {
+  white-space: nowrap;
+}
+
+/* -----------------------------------------------------------
+   PANEL TOGGLE (the two-bar icon that opens the side panel)
+----------------------------------------------------------- */
+.panel-toggle {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1.5px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: border-color var(--duration-fast) var(--ease-standard),
+              background var(--duration-fast) var(--ease-standard);
+}
+
+.panel-toggle:hover {
+  border-color: var(--color-primary);
+  background: var(--color-primary-tint);
+}
+
+/* Two Iconify icons (menu / close) stacked in the same spot.
+   aria-expanded drives a crossfade + rotate between them, so
+   the trigger icon itself communicates open/closed state. */
+.panel-toggle__icon {
+  position: absolute;
+  font-size: 1.1rem;
+  color: var(--color-ink);
+  transition: opacity var(--duration-base) var(--ease-standard),
+              transform var(--duration-base) var(--ease-standard);
+}
+
+.panel-toggle__icon--close {
+  opacity: 0;
+  transform: rotate(-45deg);
+}
+
+.panel-toggle[aria-expanded="true"] .panel-toggle__icon--menu {
+  opacity: 0;
+  transform: rotate(45deg);
+}
+
+.panel-toggle[aria-expanded="true"] .panel-toggle__icon--close {
+  opacity: 1;
+  transform: rotate(0deg);
+}
+
+/* -----------------------------------------------------------
+   SLIDE-OUT PANEL + OVERLAY
+----------------------------------------------------------- */
+.panel-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(18, 18, 26, 0.5);
+  z-index: 50;
+  opacity: 0;
+  transition: opacity var(--duration-base) var(--ease-standard);
+}
+
+.panel-overlay.is-visible {
+  opacity: 1;
+}
+
+.panel-overlay[hidden] {
+  display: none;
+}
+
+.side-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: min(400px, 88vw);
+  background: var(--color-primary);
+  color: var(--color-white);
+  z-index: 51;
+  padding: var(--space-xl) var(--space-lg);
+  overflow-y: auto;
+  transform: translateX(100%);
+  transition: transform var(--duration-base) var(--ease-standard);
+}
+
+.side-panel.is-open {
+  transform: translateX(0);
+}
+
+.side-panel__close {
+  position: absolute;
+  top: var(--space-md);
+  right: var(--space-md);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--color-white);
+  font-size: 1.1rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background var(--duration-fast) var(--ease-standard),
+              transform var(--duration-fast) var(--ease-standard);
+}
+
+.side-panel__close:hover {
+  background: rgba(255, 255, 255, 0.22);
+  transform: rotate(90deg);
+}
+
+.side-panel__logo {
+  height: 34px;
+  width: auto;
+  margin-bottom: var(--space-lg);
+}
+
+/* Nav list inside the panel — hidden on desktop by default,
+   revealed at the tablet breakpoint in responsive.css where
+   the primary-nav gets hidden in favor of this panel. */
+.side-panel__nav {
+  display: none;
+  margin-bottom: var(--space-lg);
+  padding-bottom: var(--space-lg);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.side-panel__nav ul {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.side-panel__nav a {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.0625rem;
+}
+
+.side-panel__heading {
+  font-size: 1.5rem;
+  color: var(--color-white);
+  margin-bottom: var(--space-sm);
+}
+
+.side-panel__text {
+  font-size: 0.9375rem;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: var(--space-lg);
+}
+
+.side-panel__contact {
+  margin-bottom: var(--space-lg);
+}
+
+.side-panel__contact h3 {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  margin-bottom: var(--space-xs);
+}
+
+.side-panel__contact h3 iconify-icon {
+  font-size: 0.9rem;
+}
+
+.side-panel__contact a {
+  display: block;
+  font-size: 0.9375rem;
+  margin-bottom: 0.35rem;
+}
+
+.side-panel__contact a:hover {
+  text-decoration: underline;
+}
+
+.side-panel__contact span {
+  display: block;
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.side-panel__social {
+  display: flex;
+  gap: var(--space-sm);
+}
+
+.side-panel__social a {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.14);
+  color: var(--color-white);
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background var(--duration-fast) var(--ease-standard),
+              transform var(--duration-fast) var(--ease-standard);
+}
+
+.side-panel__social a:hover {
+  background: rgba(255, 255, 255, 0.26);
+  transform: translateY(-2px);
+}
