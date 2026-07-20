@@ -511,3 +511,1113 @@ select:focus-visible {
     animation: none;
   }
 }
+
+/* -----------------------------------------------------------
+   SECTION HEADING
+   Reusable centered eyebrow + title pattern for section intros
+   site-wide (Services, About teaser, etc.) — one definition,
+   consistent spacing everywhere it's used.
+----------------------------------------------------------- */
+.section-heading {
+  text-align: center;
+  max-width: 640px;
+  margin-inline: auto;
+  margin-bottom: var(--space-xl);
+}
+
+.section-heading .eyebrow {
+  justify-content: center;
+}
+
+.section-heading__title {
+  font-size: var(--text-3xl);
+  font-weight: 800;
+  letter-spacing: -0.015em;
+}
+
+/* -----------------------------------------------------------
+   SERVICES PREVIEW
+----------------------------------------------------------- */
+.services-preview {
+  padding-block: var(--space-2xl);
+  background: var(--color-surface);
+}
+
+.service-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-lg);
+}
+
+.service-card {
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg) var(--space-lg) var(--space-xl);
+  transition: border-color var(--duration-base) var(--ease-standard),
+              transform var(--duration-base) var(--ease-standard),
+              box-shadow var(--duration-base) var(--ease-standard);
+}
+
+.service-card:hover {
+  border-color: var(--color-primary);
+  transform: translateY(-6px);
+  box-shadow: 0 28px 52px -28px rgba(18, 18, 26, 0.24);
+}
+
+.service-card__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-lg);
+}
+
+.service-card__icon-badge {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-md);
+  background: var(--color-primary-tint);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background var(--duration-base) var(--ease-standard);
+}
+
+.service-card:hover .service-card__icon-badge {
+  background: var(--color-primary);
+}
+
+.service-card__icon {
+  font-size: 1.6rem;
+  color: var(--color-primary);
+  transition: color var(--duration-base) var(--ease-standard);
+}
+
+.service-card:hover .service-card__icon {
+  color: var(--color-white);
+}
+
+.service-card__arrow {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1.5px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-ink);
+  flex-shrink: 0;
+  transition: background var(--duration-fast) var(--ease-standard),
+              border-color var(--duration-fast) var(--ease-standard),
+              color var(--duration-fast) var(--ease-standard),
+              transform var(--duration-fast) var(--ease-standard);
+}
+
+.service-card:hover .service-card__arrow {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: var(--color-white);
+  transform: rotate(45deg);
+}
+
+.service-card__divider {
+  height: 1px;
+  background: var(--color-border);
+  margin-bottom: var(--space-md);
+  transition: background var(--duration-base) var(--ease-standard);
+}
+
+.service-card:hover .service-card__divider {
+  background: var(--color-primary);
+}
+
+.service-card__title {
+  font-size: var(--text-xl);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin-bottom: var(--space-sm);
+}
+
+.service-card__text {
+  color: var(--color-ink-soft);
+  font-size: var(--text-sm);
+  line-height: 1.7;
+}
+
+/* Scroll-reveal state — toggled to .is-visible by animations.js
+   via IntersectionObserver. Reusable class, not services-specific,
+   so later sections can opt into the same reveal pattern. */
+.reveal-up {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 640ms cubic-bezier(0.4, 0, 0.2, 1),
+              transform 640ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.reveal-up.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Directional variants — used for the About section, where the
+   image slides in from the left and the content column from
+   the right, rather than everything rising from below. Same
+   observer logic in animations.js drives all three. */
+.reveal-left,
+.reveal-right {
+  opacity: 0;
+  transition: opacity 640ms cubic-bezier(0.4, 0, 0.2, 1),
+              transform 640ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.reveal-left {
+  transform: translateX(-32px);
+}
+
+.reveal-right {
+  transform: translateX(32px);
+}
+
+.reveal-left.is-visible,
+.reveal-right.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-up,
+  .reveal-left,
+  .reveal-right {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+
+/* -----------------------------------------------------------
+   ABOUT PREVIEW
+----------------------------------------------------------- */
+.about-preview {
+  padding-block: var(--space-2xl);
+}
+
+.about-preview__inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-xl);
+  align-items: center;
+  margin-bottom: var(--space-2xl);
+}
+
+.about-preview__media {
+  position: relative;
+  padding: var(--space-md) var(--space-md) var(--space-md) 0;
+}
+
+/* The offset indigo panel behind the photo — pure CSS, no
+   second image asset needed. Sits behind via z-index, peeking
+   out top-left to frame the shot. */
+.about-preview__frame {
+  position: absolute;
+  top: 0;
+  left: var(--space-md);
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(155deg, var(--color-primary), var(--color-primary-dark));
+  border-radius: var(--radius-lg);
+  z-index: 0;
+}
+
+.about-preview__image {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 460px;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+}
+
+.about-preview__badge {
+  position: absolute;
+  z-index: 2;
+  right: -16px;
+  bottom: 24px;
+  background: var(--color-white);
+  border-radius: var(--radius-md);
+  padding: var(--space-md) var(--space-lg);
+  box-shadow: 0 20px 40px -18px rgba(18, 18, 26, 0.3);
+  text-align: center;
+  min-width: 160px;
+}
+
+.about-preview__badge-number {
+  display: block;
+  font-family: var(--font-display);
+  font-size: var(--text-3xl);
+  font-weight: 800;
+  color: var(--color-ink);
+  line-height: 1;
+  margin-bottom: 0.35rem;
+}
+
+.about-preview__badge-label {
+  display: block;
+  font-size: var(--text-sm);
+  color: var(--color-ink-soft);
+}
+
+.about-preview__title {
+  font-size: var(--text-3xl);
+  font-weight: 800;
+  letter-spacing: -0.015em;
+  margin-bottom: var(--space-md);
+}
+
+.about-preview__text {
+  color: var(--color-ink-soft);
+  font-size: var(--text-base);
+  line-height: 1.75;
+  max-width: 52ch;
+  margin-bottom: var(--space-lg);
+}
+
+.about-checklist {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.about-checklist__item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-sm);
+}
+
+.about-checklist__icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--color-primary-tint);
+  color: var(--color-primary);
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.about-checklist__item h3 {
+  font-size: var(--text-base);
+  font-weight: 700;
+  margin-bottom: 0.2rem;
+}
+
+.about-checklist__item p {
+  font-size: var(--text-sm);
+  color: var(--color-ink-soft);
+  line-height: 1.6;
+}
+
+/* -----------------------------------------------------------
+   STAT GRID
+   Hover language: background inverts to brand indigo, text
+   turns white, arrow flips from pointing left to pointing
+   right (rotate 180°) — a small "moving forward" gesture that
+   fits a logistics brand better than a generic count-up.
+----------------------------------------------------------- */
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-md);
+}
+
+.stat-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-lg);
+  transition: background var(--duration-base) var(--ease-standard),
+              border-color var(--duration-base) var(--ease-standard),
+              transform var(--duration-base) var(--ease-standard);
+}
+
+.stat-card:hover {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  transform: translateY(-4px);
+}
+
+.stat-card__top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: var(--space-sm);
+}
+
+.stat-card__number {
+  font-family: var(--font-mono);
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  color: var(--color-ink);
+  transition: color var(--duration-base) var(--ease-standard);
+}
+
+.stat-card:hover .stat-card__number {
+  color: var(--color-white);
+}
+
+.stat-card__arrow {
+  font-size: 1.1rem;
+  color: var(--color-ink-soft);
+  transition: transform var(--duration-base) var(--ease-standard),
+              color var(--duration-base) var(--ease-standard);
+}
+
+.stat-card:hover .stat-card__arrow {
+  transform: rotate(180deg);
+  color: var(--color-white);
+}
+
+.stat-card__label {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: var(--text-sm);
+  color: var(--color-ink-soft);
+  transition: color var(--duration-base) var(--ease-standard);
+}
+
+.stat-card:hover .stat-card__label {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* -----------------------------------------------------------
+   LATEST WORK
+   Intro column + 2x2 card grid. Each card gets its own hover
+   signature (image zoom, accent bar grow, arrow slide) so this
+   section reads distinctly from the Services and About hover
+   languages already established, not a repeat of either.
+----------------------------------------------------------- */
+.work-preview {
+  padding-block: var(--space-2xl);
+}
+
+.work-preview__inner {
+  display: grid;
+  grid-template-columns: 0.85fr 2fr;
+  gap: var(--space-xl);
+  align-items: start;
+}
+
+.work-preview__title {
+  font-size: var(--text-3xl);
+  font-weight: 800;
+  letter-spacing: -0.015em;
+  margin-bottom: var(--space-md);
+}
+
+.work-preview__text {
+  color: var(--color-ink-soft);
+  font-size: var(--text-base);
+  line-height: 1.75;
+  max-width: 34ch;
+}
+
+.work-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-lg);
+}
+
+.work-card {
+  position: relative;
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: border-color var(--duration-base) var(--ease-standard),
+              transform var(--duration-base) var(--ease-standard),
+              box-shadow var(--duration-base) var(--ease-standard);
+}
+
+.work-card:hover {
+  border-color: var(--color-primary);
+  transform: translateY(-4px);
+  box-shadow: 0 24px 48px -26px rgba(18, 18, 26, 0.24);
+}
+
+.work-card__media {
+  position: relative;
+  overflow: hidden;
+  height: 220px;
+}
+
+.work-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 700ms var(--ease-standard);
+}
+
+.work-card:hover .work-card__image {
+  transform: scale(1.08);
+}
+
+.work-card__body {
+  padding: var(--space-lg);
+  text-align: center;
+}
+
+.work-card__title {
+  font-size: var(--text-lg);
+  font-weight: 700;
+  margin-bottom: var(--space-sm);
+}
+
+.work-card__text {
+  font-size: var(--text-sm);
+  color: var(--color-ink-soft);
+  line-height: 1.65;
+  margin-bottom: var(--space-md);
+}
+
+.work-card__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-ink);
+}
+
+.work-card__link iconify-icon {
+  transition: transform var(--duration-fast) var(--ease-standard);
+}
+
+.work-card:hover .work-card__link iconify-icon {
+  transform: translateX(4px);
+}
+
+.work-card__accent {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 3px;
+  width: 100%;
+  background: var(--color-primary);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--duration-base) var(--ease-standard);
+}
+
+.work-card:hover .work-card__accent {
+  transform: scaleX(1);
+}
+
+/* -----------------------------------------------------------
+   TESTIMONIALS — infinite marquee
+   No prev/next controls by design: the track auto-scrolls via
+   a single CSS animation, pauses on hover so a card can be
+   read, and loops seamlessly because the track contains two
+   identical sets of cards and slides exactly -50% (one full
+   set's width) before resetting.
+----------------------------------------------------------- */
+.testimonials {
+  padding-block: var(--space-2xl);
+  overflow: hidden;
+}
+
+.testimonial-marquee {
+  overflow: hidden;
+  margin-top: var(--space-xl);
+  /* Fade the edges instead of a hard cutoff — reads as an
+     intentional loop, not clipped content. */
+  -webkit-mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
+  mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
+}
+
+.testimonial-track {
+  display: flex;
+  gap: var(--space-lg);
+  width: max-content;
+  animation: testimonialScroll 42s linear infinite;
+}
+
+.testimonial-marquee:hover .testimonial-track {
+  animation-play-state: paused;
+}
+
+/* Keeps the duplicate set's cards as direct flex children (so
+   sizing/gap stays identical to the primary set) while still
+   letting one aria-hidden on the wrapper cover all of them. */
+.testimonial-track__duplicate {
+  display: contents;
+}
+
+@keyframes testimonialScroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.testimonial-card {
+  flex-shrink: 0;
+  width: 400px;
+  display: flex;
+  gap: var(--space-md);
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+}
+
+.testimonial-card__person {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 84px;
+}
+
+.testimonial-card__avatar {
+  position: relative;
+  width: 64px;
+  height: 64px;
+  margin-bottom: var(--space-sm);
+}
+
+.testimonial-card__photo {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.testimonial-card__quote-mark {
+  position: absolute;
+  right: -4px;
+  bottom: -4px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  color: var(--color-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  border: 2px solid var(--color-white);
+}
+
+.testimonial-card__name {
+  font-weight: 700;
+  font-size: var(--text-sm);
+  text-align: center;
+}
+
+.testimonial-card__stars {
+  display: flex;
+  gap: 2px;
+  color: var(--color-primary);
+  font-size: 0.8rem;
+  margin-bottom: 0.35rem;
+}
+
+.testimonial-card__reviews {
+  font-size: var(--text-xs);
+  color: var(--color-ink-soft);
+  margin-bottom: var(--space-sm);
+}
+
+.testimonial-card__text {
+  font-size: var(--text-sm);
+  color: var(--color-ink-soft);
+  line-height: 1.65;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .testimonial-marquee {
+    overflow-x: auto;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+
+  .testimonial-track {
+    animation: none;
+  }
+}
+
+/* -----------------------------------------------------------
+   PROMO BANNER SLIDER
+   Auto-rotating message carousel, no visible controls. Slides
+   are absolutely stacked and crossfade/slide via a JS-toggled
+   .is-active class (see main.js) — a discrete timed swap, not
+   a continuous scroll like the marquees, since this is short
+   textual content meant to be read, not glanced at in motion.
+----------------------------------------------------------- */
+.promo-banner {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+  padding-block: var(--space-lg);
+}
+
+.promo-banner__slides {
+  position: relative;
+  min-height: 96px;
+}
+
+.promo-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 600ms var(--ease-standard),
+              transform 600ms var(--ease-standard);
+  pointer-events: none;
+}
+
+.promo-slide.is-active {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.promo-slide__title {
+  font-size: var(--text-3xl);
+  font-weight: 800;
+  color: var(--color-white);
+  letter-spacing: -0.015em;
+  line-height: 1.15;
+  margin-bottom: var(--space-sm);
+}
+
+.promo-slide__text {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: var(--text-sm);
+  line-height: 1.6;
+  max-width: 46ch;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .promo-slide {
+    transition: opacity 200ms linear;
+    transform: none;
+  }
+}
+
+/* -----------------------------------------------------------
+   PARTNERS MARQUEE
+   Two rows, opposite scroll directions — a common "high-end
+   site" touch that reads as more considered than a single flat
+   row. Slower and steadier than the promo banner's 5s cycle,
+   per the pacing you asked for.
+----------------------------------------------------------- */
+.partners {
+  background: var(--color-surface);
+  padding-block: var(--space-xl);
+  overflow: hidden;
+}
+
+.partners__row {
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
+  mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
+}
+
+.partners__row + .partners__row {
+  margin-top: var(--space-lg);
+}
+
+.partners__track {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xl);
+  width: max-content;
+  animation: partnersScroll 55s linear infinite;
+}
+
+.partners__track--logos {
+  animation-direction: reverse;
+}
+
+.partners__row:hover .partners__track {
+  animation-play-state: paused;
+}
+
+.partners__duplicate {
+  display: contents;
+}
+
+@keyframes partnersScroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.partners__wordmark {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  flex-shrink: 0;
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 800;
+  color: var(--color-ink);
+  white-space: nowrap;
+}
+
+.partners__sparkle {
+  color: var(--color-primary);
+  font-size: 1rem;
+  animation: sparkleSpin 6s linear infinite;
+}
+
+@keyframes sparkleSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.partners__logo-placeholder {
+  flex-shrink: 0;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: var(--text-sm);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-ink-soft);
+  opacity: 0.65;
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .partners__row {
+    overflow-x: auto;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+
+  .partners__track {
+    animation: none;
+  }
+
+  .partners__sparkle {
+    animation: none;
+  }
+}
+
+/* -----------------------------------------------------------
+   FOOTER
+   Dark background is a deliberate departure from the rest of
+   the (light) site — signals "this is the end of the page"
+   without needing a divider line. Newsletter sits in its own
+   full-width indigo bar above the dark section rather than as
+   a cramped fifth column.
+----------------------------------------------------------- */
+.footer-newsletter {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+  padding-block: var(--space-xl);
+}
+
+.footer-newsletter__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-lg);
+  flex-wrap: wrap;
+}
+
+.footer-newsletter__title {
+  font-size: var(--text-2xl);
+  font-weight: 800;
+  color: var(--color-white);
+  margin-bottom: 0.35rem;
+}
+
+.footer-newsletter__text {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: var(--text-sm);
+  max-width: 44ch;
+}
+
+.footer-newsletter__form {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+}
+
+.footer-newsletter__field {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1.5px solid rgba(255, 255, 255, 0.25);
+  border-radius: var(--radius-sm);
+  padding: 0.7rem 1rem;
+  transition: border-color var(--duration-fast) var(--ease-standard),
+              background var(--duration-fast) var(--ease-standard);
+}
+
+.footer-newsletter__field:focus-within {
+  border-color: var(--color-white);
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.footer-newsletter__field iconify-icon {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.footer-newsletter__field input {
+  background: none;
+  border: none;
+  color: var(--color-white);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  min-width: 220px;
+}
+
+.footer-newsletter__field input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.footer-newsletter__field input:focus {
+  outline: none;
+}
+
+.footer-newsletter .btn--primary {
+  background: var(--color-white);
+  color: var(--color-primary);
+}
+
+.footer-newsletter .btn--primary:hover {
+  background: var(--color-ink);
+  color: var(--color-white);
+}
+
+.footer-newsletter__message {
+  text-align: center;
+  font-size: var(--text-sm);
+  color: var(--color-white);
+  min-height: 1.2em;
+  margin-top: var(--space-sm);
+}
+
+.footer-main {
+  background: var(--color-ink);
+  padding-block: var(--space-2xl);
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  gap: var(--space-xl);
+}
+
+.footer-logo {
+  height: 32px;
+  width: auto;
+  margin-bottom: var(--space-md);
+}
+
+.footer-tagline {
+  color: rgba(255, 255, 255, 0.65);
+  font-size: var(--text-sm);
+  line-height: 1.7;
+  max-width: 34ch;
+  margin-bottom: var(--space-lg);
+}
+
+.footer-social {
+  display: flex;
+  gap: var(--space-sm);
+}
+
+.footer-social a {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--color-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  transition: background var(--duration-fast) var(--ease-standard),
+              transform var(--duration-fast) var(--ease-standard);
+}
+
+.footer-social a:hover {
+  background: var(--color-primary);
+  transform: translateY(-3px);
+}
+
+.footer-col__title {
+  color: var(--color-white);
+  font-size: var(--text-base);
+  font-weight: 700;
+  margin-bottom: var(--space-md);
+}
+
+.footer-links,
+.footer-contact {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.footer-links a {
+  position: relative;
+  display: inline-block;
+  color: rgba(255, 255, 255, 0.65);
+  font-size: var(--text-sm);
+  transition: color var(--duration-fast) var(--ease-standard);
+}
+
+.footer-links a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 1px;
+  background: var(--color-white);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--duration-fast) var(--ease-standard);
+}
+
+.footer-links a:hover {
+  color: var(--color-white);
+}
+
+.footer-links a:hover::after {
+  transform: scaleX(1);
+}
+
+.footer-contact li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  color: rgba(255, 255, 255, 0.65);
+  font-size: var(--text-sm);
+  line-height: 1.5;
+}
+
+.footer-contact a {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  color: rgba(255, 255, 255, 0.65);
+  transition: color var(--duration-fast) var(--ease-standard);
+}
+
+.footer-contact a:hover {
+  color: var(--color-white);
+}
+
+.footer-contact iconify-icon {
+  font-size: 1rem;
+  color: var(--color-primary);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.footer-bottom {
+  background: var(--color-ink);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-block: var(--space-md);
+}
+
+.footer-bottom__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+}
+
+.footer-bottom p {
+  color: rgba(255, 255, 255, 0.55);
+  font-size: var(--text-xs);
+}
+
+.footer-legal {
+  display: flex;
+  gap: var(--space-md);
+}
+
+.footer-legal a {
+  color: rgba(255, 255, 255, 0.55);
+  font-size: var(--text-xs);
+  transition: color var(--duration-fast) var(--ease-standard);
+}
+
+.footer-legal a:hover {
+  color: var(--color-white);
+}
+
+/* -----------------------------------------------------------
+   BACK TO TOP
+   Fades/scales in once the user has scrolled past the hero
+   (toggled via .is-visible from main.js). Icon nudges upward
+   on hover as a small directional cue.
+----------------------------------------------------------- */
+.back-to-top {
+  position: fixed;
+  right: var(--space-lg);
+  bottom: var(--space-lg);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  color: var(--color-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  box-shadow: 0 12px 28px -10px rgba(75, 33, 226, 0.55);
+  z-index: 30;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(12px) scale(0.9);
+  transition: opacity var(--duration-base) var(--ease-standard),
+              transform var(--duration-base) var(--ease-standard),
+              visibility 0s linear var(--duration-base),
+              background var(--duration-fast) var(--ease-standard);
+}
+
+.back-to-top.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+  transition: opacity var(--duration-base) var(--ease-standard),
+              transform var(--duration-base) var(--ease-standard),
+              background var(--duration-fast) var(--ease-standard);
+}
+
+.back-to-top:hover {
+  background: var(--color-primary-dark);
+}
+
+.back-to-top iconify-icon {
+  transition: transform var(--duration-fast) var(--ease-standard);
+}
+
+.back-to-top:hover iconify-icon {
+  transform: translateY(-2px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .back-to-top {
+    transition: opacity var(--duration-fast) linear, visibility 0s;
+    transform: none;
+  }
+
+  .back-to-top.is-visible {
+    transform: none;
+  }
+}

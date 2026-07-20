@@ -94,3 +94,127 @@
   closeBtn.addEventListener('click', closePanel);
   overlay.addEventListener('click', closePanel);
 })();
+
+/**
+ * Promo banner slider. Auto-rotates every 5s, no visible
+ * prev/next controls. Pauses on hover so the message can
+ * actually be read. A discrete timed swap (not a continuous
+ * marquee) since this is short text meant to be read, not
+ * glanced at mid-motion.
+ */
+(function () {
+  'use strict';
+
+  const banner = document.querySelector('.promo-banner');
+  const slides = document.querySelectorAll('.promo-slide');
+
+  if (!banner || slides.length < 2) return;
+
+  const intervalMs = 5000;
+  let activeIndex = 0;
+  let timer = null;
+
+  function showSlide(index) {
+    slides.forEach((slide, i) => {
+      slide.classList.toggle('is-active', i === index);
+    });
+  }
+
+  function next() {
+    activeIndex = (activeIndex + 1) % slides.length;
+    showSlide(activeIndex);
+  }
+
+  function start() {
+    if (timer) return;
+    timer = setInterval(next, intervalMs);
+  }
+
+  function stop() {
+    clearInterval(timer);
+    timer = null;
+  }
+
+  showSlide(activeIndex);
+  start();
+
+  banner.addEventListener('mouseenter', stop);
+  banner.addEventListener('mouseleave', start);
+})();
+
+/**
+ * Newsletter form. Client-side validation only for now — no
+ * backend exists yet, so this just confirms the email looks
+ * valid and shows an inline message. Swap the TODO block for
+ * a real fetch() call to the subscribe endpoint once the
+ * Express API is live.
+ */
+(function () {
+  'use strict';
+
+  const form = document.getElementById('newsletter-form');
+  const emailInput = document.getElementById('newsletter-email');
+  const message = document.getElementById('newsletter-message');
+
+  if (!form || !emailInput || !message) return;
+
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    const email = emailInput.value.trim();
+
+    if (!emailPattern.test(email)) {
+      message.textContent = 'Please enter a valid email address.';
+      return;
+    }
+
+    // TODO: replace with a real request once the backend exists, e.g.
+    // fetch('/api/newsletter', { method: 'POST', body: JSON.stringify({ email }) })
+    message.textContent = `Thanks — we'll send updates to ${email}.`;
+    form.reset();
+  });
+})();
+
+/**
+ * Back-to-top button. Appears once the user has scrolled past
+ * roughly one viewport height, so it doesn't show up while
+ * they're still looking at the hero.
+ */
+(function () {
+  'use strict';
+
+  const button = document.getElementById('back-to-top');
+  if (!button) return;
+
+  const prefersReducedMotion = window.matchMedia(
+    '(prefers-reduced-motion: reduce)'
+  ).matches;
+
+  function toggleVisibility() {
+    button.classList.toggle('is-visible', window.scrollY > window.innerHeight * 0.8);
+  }
+
+  toggleVisibility();
+  window.addEventListener('scroll', toggleVisibility, { passive: true });
+
+  button.addEventListener('click', () => {
+    window.scrollTo({
+      top: 0,
+      behavior: prefersReducedMotion ? 'auto' : 'smooth',
+    });
+  });
+})();
+
+/**
+ * Copyright year — one less thing to remember to update by hand.
+ */
+(function () {
+  'use strict';
+
+  const yearEl = document.getElementById('current-year');
+  if (yearEl) {
+    yearEl.textContent = new Date().getFullYear();
+  }
+})();

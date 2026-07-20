@@ -14,6 +14,8 @@
 
   runHeroEntrance();
   if (!prefersReducedMotion) runHeroParallax();
+  runScrollReveal();
+  runStatCounters();
 
   /**
    * Orchestrated hero entrance. One deliberate sequence —
@@ -90,5 +92,118 @@
       if (frame) cancelAnimationFrame(frame);
       media.style.transform = 'perspective(1000px) rotateY(0deg) rotateX(0deg)';
     });
+  }
+
+  /**
+   * Generic scroll-triggered reveal for any element with class
+   * "reveal-up" (CSS handles the actual opacity/transform states
+   * in style.css — this only toggles .is-visible). Reused across
+   * sections instead of writing bespoke reveal logic per section.
+   *
+   * Siblings within the same parent are staggered by 80ms so a
+   * row of cards reveals left-to-right rather than all at once.
+   */
+  function runScrollReveal() {
+    const items = document.querySelectorAll('.reveal-up, .reveal-left, .reveal-right');
+    if (items.length === 0) return;
+
+    if (prefersReducedMotion) {
+      items.forEach((el) => el.classList.add('is-visible'));
+      return;
+    }
+
+    if (!('IntersectionObserver' in window)) {
+      // No IntersectionObserver support — reveal everything immediately
+      // rather than leaving content permanently hidden.
+      items.forEach((el) => el.classList.add('is-visible'));
+      return;
+    }
+
+    const groups = new Map();
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+
+          const el = entry.target;
+          const parent = el.parentElement;
+          const siblingIndex = groups.has(parent)
+            ? groups.get(parent)
+            : 0;
+          groups.set(parent, siblingIndex + 1);
+
+          setTimeout(() => {
+            el.classList.add('is-visible');
+          }, siblingIndex * 80);
+
+          observer.unobserve(el);
+        });
+      },
+      { threshold: 0.15, rootMargin: '0px 0px -60px 0px' }
+    );
+
+    items.forEach((el) => observer.observe(el));
+  }
+
+  /**
+   * Count-up animation for any element with a `data-count-to`
+   * attribute. The element's markup already contains the real
+   * final value (e.g. "150+") — that's the no-JS fallback. On
+   * load we stash the non-numeric suffix, reset the display to
+   * 0, then animate up to the target once it scrolls into view.
+   * Reduced motion / no observer support: just leave the real
+   * value in place, no animation, no risk of it getting stuck.
+   */
+  function runStatCounters() {
+    const counters = document.querySelectorAll('[data-count-to]');
+    if (counters.length === 0) return;
+
+    if (prefersReducedMotion || !('IntersectionObserver' in window)) {
+      return;
+    }
+
+    counters.forEach((el) => {
+      const suffix = el.textContent.replace(/[\d,]/g, '');
+      el.dataset.suffix = suffix;
+      el.textContent = '0' + suffix;
+    });
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          animateCount(entry.target);
+          observer.unobserve(entry.target);
+        });
+      },
+      { threshold: 0.4 }
+    );
+
+    counters.forEach((el) => observer.observe(el));
+  }
+
+  function animateCount(el) {
+    const target = parseInt(el.dataset.countTo, 10);
+    const suffix = el.dataset.suffix || '';
+    const duration = 1400;
+    const start = performance.now();
+
+    function tick(now) {
+      const elapsed = now - start;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3); // easeOutCubic — fast start, gentle settle
+      const value = Math.round(target * eased);
+
+      el.textContent = value.toLocaleString() + suffix;
+
+      if (progress < 1) {
+        requestAnimationFrame(tick);
+      } else {
+        el.textContent = target.toLocaleString() + suffix;
+      }
+    }
+
+    requestAnimationFrame(tick);
   }
 })();

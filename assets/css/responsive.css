@@ -30,6 +30,48 @@
   .tracking-preview {
     left: -20px;
   }
+
+  .service-grid {
+    gap: var(--space-md);
+  }
+
+  .about-preview__inner {
+    grid-template-columns: 1fr;
+  }
+
+  .about-preview__image {
+    height: 360px;
+  }
+
+  .stat-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .work-preview__inner {
+    grid-template-columns: 1fr;
+  }
+
+  .work-preview__text {
+    max-width: 60ch;
+  }
+
+  .promo-banner__slides {
+    min-height: 116px;
+  }
+
+  .footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-lg);
+  }
+
+  .footer-col--brand {
+    grid-column: 1 / -1;
+  }
+
+  .footer-newsletter__inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
 
 /* -----------------------------------------------------------
@@ -81,6 +123,22 @@
     display: none;
   }
 
+  .promo-banner {
+    padding-block: var(--space-md);
+  }
+
+  .promo-banner__slides {
+    min-height: 104px;
+  }
+
+  .promo-slide__title {
+    font-size: var(--text-2xl);
+  }
+
+  .promo-slide__text {
+    font-size: var(--text-xs);
+  }
+
   /* On mobile the card can't hang off the image edge — center
      it and dock it to the bottom instead of floating outside. */
   .tracking-preview {
@@ -89,6 +147,81 @@
     transform: translateX(-50%);
     min-width: 200px;
     animation: none;
+  }
+
+  .service-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .section-heading__title {
+    font-size: var(--text-2xl);
+  }
+
+  .about-preview__badge {
+    right: 8px;
+    padding: var(--space-sm) var(--space-md);
+    min-width: 130px;
+  }
+
+  .about-preview__badge-number {
+    font-size: var(--text-xl);
+  }
+
+  .work-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .testimonial-card {
+    width: 300px;
+  }
+
+  .promo-banner {
+    padding-block: var(--space-sm);
+  }
+
+  .promo-banner__slides {
+    min-height: 128px;
+  }
+
+  .promo-slide__title {
+    font-size: var(--text-xl);
+  }
+
+  .partners__wordmark {
+    font-size: var(--text-lg);
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-col--brand {
+    grid-column: auto;
+  }
+
+  .footer-newsletter__form {
+    width: 100%;
+  }
+
+  .footer-newsletter__field {
+    flex: 1;
+  }
+
+  .footer-newsletter__field input {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .footer-bottom__inner {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .back-to-top {
+    right: var(--space-md);
+    bottom: var(--space-md);
+    width: 42px;
+    height: 42px;
   }
 }
 
