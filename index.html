@@ -832,24 +832,29 @@
   <footer class="site-footer">
 
     <div class="footer-newsletter">
+      <iconify-icon icon="ph:envelope-simple-open-bold" class="footer-newsletter__bg-icon" aria-hidden="true"></iconify-icon>
       <div class="container footer-newsletter__inner">
         <div class="footer-newsletter__copy">
+          <p class="eyebrow footer-newsletter__eyebrow">Stay Ahead</p>
           <h2 class="footer-newsletter__title">Stay Ahead of Every Shipment</h2>
           <p class="footer-newsletter__text">Shipping tips, service updates, and news from Blue Edge Logistics — straight to your inbox.</p>
         </div>
 
-        <form class="footer-newsletter__form" id="newsletter-form" novalidate>
-          <div class="footer-newsletter__field">
-            <iconify-icon icon="ph:envelope-simple-bold" aria-hidden="true"></iconify-icon>
-            <input type="email" name="email" id="newsletter-email" placeholder="Your email address" required aria-label="Email address" />
-          </div>
-          <button type="submit" class="btn btn--primary btn--sm">
-            Subscribe
-            <iconify-icon icon="ph:paper-plane-tilt-bold" aria-hidden="true"></iconify-icon>
-          </button>
-        </form>
+        <div class="footer-newsletter__form-wrap">
+          <form class="footer-newsletter__form" id="newsletter-form" novalidate>
+            <div class="footer-newsletter__field">
+              <iconify-icon icon="ph:envelope-simple-bold" aria-hidden="true"></iconify-icon>
+              <input type="email" name="email" id="newsletter-email" placeholder="Your email address" required aria-label="Email address" />
+            </div>
+            <button type="submit" class="footer-newsletter__submit">
+              Subscribe
+              <iconify-icon icon="ph:paper-plane-tilt-bold" aria-hidden="true"></iconify-icon>
+            </button>
+          </form>
+          <p class="footer-newsletter__note">No spam. Unsubscribe anytime.</p>
+          <p class="footer-newsletter__message" id="newsletter-message" role="status" aria-live="polite"></p>
+        </div>
       </div>
-      <p class="footer-newsletter__message" id="newsletter-message" role="status" aria-live="polite"></p>
     </div>
 
     <div class="footer-main">

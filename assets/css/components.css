@@ -59,6 +59,15 @@
   color: var(--color-primary);
 }
 
+/* Placed after the variant hover rules on purpose: equal
+   specificity means source order decides, and a press should
+   always win over a hover, even mid-hover. */
+.btn--primary:active,
+.btn--outline:active {
+  transform: scale(0.96);
+  transition-duration: 100ms;
+}
+
 /* Nav-specific tweak: keep the "Get a Quote" button visually
    lighter than a full primary CTA so it doesn't compete with
    the hero's own buttons. */
@@ -80,12 +89,18 @@
   justify-content: center;
   flex-shrink: 0;
   transition: border-color var(--duration-fast) var(--ease-standard),
-              background var(--duration-fast) var(--ease-standard);
+              background var(--duration-fast) var(--ease-standard),
+              transform var(--duration-fast) var(--ease-standard);
 }
 
 .panel-toggle:hover {
   border-color: var(--color-primary);
   background: var(--color-primary-tint);
+}
+
+.panel-toggle:active {
+  transform: scale(0.9);
+  transition-duration: 100ms;
 }
 
 /* Two Iconify icons (menu / close) stacked in the same spot.
@@ -96,7 +111,7 @@
   font-size: 1.1rem;
   color: var(--color-ink);
   transition: opacity var(--duration-base) var(--ease-standard),
-              transform var(--duration-base) var(--ease-standard);
+              transform 420ms var(--ease-spring);
 }
 
 .panel-toggle__icon--close {
@@ -174,6 +189,11 @@
 .side-panel__close:hover {
   background: rgba(255, 255, 255, 0.22);
   transform: rotate(90deg);
+}
+
+.side-panel__close:active {
+  transform: rotate(90deg) scale(0.88);
+  transition-duration: 100ms;
 }
 
 .side-panel__logo {
@@ -271,4 +291,9 @@
 .side-panel__social a:hover {
   background: rgba(255, 255, 255, 0.26);
   transform: translateY(-2px);
+}
+
+.side-panel__social a:active {
+  transform: scale(0.88);
+  transition-duration: 100ms;
 }

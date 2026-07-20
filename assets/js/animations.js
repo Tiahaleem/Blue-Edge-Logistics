@@ -48,8 +48,8 @@
 
     sequence.forEach(({ el, delay }) => {
       el.style.opacity = '0';
-      el.style.transform = 'translateY(18px)';
-      el.style.transition = `opacity 640ms cubic-bezier(0.4, 0, 0.2, 1) ${delay}ms, transform 640ms cubic-bezier(0.4, 0, 0.2, 1) ${delay}ms`;
+      el.style.transform = 'translateY(16px)';
+      el.style.transition = `opacity 480ms cubic-bezier(0.4, 0, 0.2, 1) ${delay}ms, transform 520ms cubic-bezier(0.34, 1.56, 0.64, 1) ${delay}ms`;
     });
 
     requestAnimationFrame(() => {
