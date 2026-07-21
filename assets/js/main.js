@@ -208,6 +208,42 @@
 })();
 
 /**
+ * FAQ accordion. Single-open-at-a-time: opening one item closes
+ * any other that was open. The expand/collapse animation itself
+ * is pure CSS (grid-template-rows), so this only needs to toggle
+ * aria-expanded and a class — no height measuring in JS.
+ */
+(function () {
+  'use strict';
+
+  const items = document.querySelectorAll('.faq-item');
+  if (items.length === 0) return;
+
+  items.forEach((item) => {
+    const button = item.querySelector('.faq-item__question');
+    const answerWrap = item.querySelector('.faq-item__answer-wrap');
+    if (!button || !answerWrap) return;
+
+    button.addEventListener('click', () => {
+      const isOpen = button.getAttribute('aria-expanded') === 'true';
+
+      items.forEach((otherItem) => {
+        const otherButton = otherItem.querySelector('.faq-item__question');
+        const otherWrap = otherItem.querySelector('.faq-item__answer-wrap');
+        if (!otherButton || !otherWrap) return;
+        otherButton.setAttribute('aria-expanded', 'false');
+        otherWrap.classList.remove('is-open');
+      });
+
+      if (!isOpen) {
+        button.setAttribute('aria-expanded', 'true');
+        answerWrap.classList.add('is-open');
+      }
+    });
+  });
+})();
+
+/**
  * Copyright year — one less thing to remember to update by hand.
  */
 (function () {

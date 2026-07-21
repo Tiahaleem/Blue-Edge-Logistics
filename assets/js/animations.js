@@ -12,6 +12,12 @@
     '(prefers-reduced-motion: reduce)'
   ).matches;
 
+  // Declared here, before first use below — `let` bindings exist
+  // in a temporal dead zone until their declaration line actually
+  // runs, so this has to come before runScrollReveal() is called,
+  // even though the function that reads it is defined further down.
+  let scrollRevealObserver = null;
+
   runHeroEntrance();
   if (!prefersReducedMotion) runHeroParallax();
   runScrollReveal();
@@ -103,25 +109,12 @@
    * Siblings within the same parent are staggered by 80ms so a
    * row of cards reveals left-to-right rather than all at once.
    */
-  function runScrollReveal() {
-    const items = document.querySelectorAll('.reveal-up, .reveal-left, .reveal-right');
-    if (items.length === 0) return;
-
-    if (prefersReducedMotion) {
-      items.forEach((el) => el.classList.add('is-visible'));
-      return;
-    }
-
-    if (!('IntersectionObserver' in window)) {
-      // No IntersectionObserver support — reveal everything immediately
-      // rather than leaving content permanently hidden.
-      items.forEach((el) => el.classList.add('is-visible'));
-      return;
-    }
+  function getScrollRevealObserver() {
+    if (scrollRevealObserver) return scrollRevealObserver;
 
     const groups = new Map();
 
-    const observer = new IntersectionObserver(
+    scrollRevealObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (!entry.isIntersecting) return;
@@ -137,14 +130,43 @@
             el.classList.add('is-visible');
           }, siblingIndex * 80);
 
-          observer.unobserve(el);
+          scrollRevealObserver.unobserve(el);
         });
       },
       { threshold: 0.15, rootMargin: '0px 0px -60px 0px' }
     );
 
-    items.forEach((el) => observer.observe(el));
+    return scrollRevealObserver;
   }
+
+  /**
+   * Scans for .reveal-up/.reveal-left/.reveal-right elements and
+   * observes any that aren't already tracked. Safe to call more
+   * than once — e.g. after injecting new content dynamically
+   * (the tracking page's results, rendered via JS after a search)
+   * — since already-processed elements are skipped rather than
+   * re-observed. Exposed on window so other scripts can trigger
+   * a re-scan without depending on load order.
+   */
+  function runScrollReveal() {
+    const items = document.querySelectorAll('.reveal-up, .reveal-left, .reveal-right');
+    if (items.length === 0) return;
+
+    if (prefersReducedMotion || !('IntersectionObserver' in window)) {
+      items.forEach((el) => el.classList.add('is-visible'));
+      return;
+    }
+
+    const observer = getScrollRevealObserver();
+
+    items.forEach((el) => {
+      if (el.classList.contains('is-visible') || el.dataset.revealObserved) return;
+      el.dataset.revealObserved = 'true';
+      observer.observe(el);
+    });
+  }
+
+  window.reinitScrollReveal = runScrollReveal;
 
   /**
    * Count-up animation for any element with a `data-count-to`

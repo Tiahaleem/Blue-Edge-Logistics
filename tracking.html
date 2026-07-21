@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Track Your Shipment | Blue Edge Logistics</title>
+  <meta name="description" content="Track your Blue Edge Logistics shipment in real time. Enter your tracking code to see current status, location, and delivery timeline." />
+
+  <!-- Fonts: Unbounded (display), Plus Jakarta Sans (body), JetBrains Mono (data/utility) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/components.css" />
+  <link rel="stylesheet" href="assets/css/responsive.css" />
+
+  <link rel="icon" type="image/png" href="assets/images/favicon.png" />
+
+  <!-- Iconify: icon web component, loaded once, used everywhere. -->
+  <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js" defer></script>
+</head>
+<body>
+
+  <!-- ===================== HEADER ===================== -->
+  <header class="site-header" id="site-header">
+
+    <!-- Utility bar: contact strip -->
+    <div class="utility-bar">
+      <div class="container utility-bar__inner">
+        <ul class="utility-bar__contact">
+          <li>
+            <a href="mailto:support@blueedgelogistics.com">
+              <iconify-icon icon="ph:envelope-simple-bold" class="icon" aria-hidden="true"></iconify-icon>
+              support@blueedgelogistics.com
+            </a>
+          </li>
+          <li>
+            <iconify-icon icon="ph:map-pin-line-bold" class="icon" aria-hidden="true"></iconify-icon>
+            Tesla Road, Austin, TX 78725, United States
+          </li>
+        </ul>
+
+        <ul class="utility-bar__social">
+          <li><a href="#" aria-label="Blue Edge Logistics on Facebook"><iconify-icon icon="ph:facebook-logo-bold" aria-hidden="true"></iconify-icon></a></li>
+          <li><a href="#" aria-label="Blue Edge Logistics on Instagram"><iconify-icon icon="ph:instagram-logo-bold" aria-hidden="true"></iconify-icon></a></li>
+          <li><a href="#" aria-label="Blue Edge Logistics on X" ><iconify-icon icon="ph:x-logo-bold" aria-hidden="true"></iconify-icon></a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Main nav -->
+    <div class="main-nav">
+      <div class="container main-nav__inner">
+
+        <a href="index.html" class="brand" aria-label="Blue Edge Logistics home">
+          <img src="assets/css/images/WhatsApp Image 2026-07-19 at 08.20.53.jpeg" alt="Blue Edge Logistics" class="brand__logo" />
+        </a>
+
+        <nav class="primary-nav" aria-label="Primary">
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="tracking.html" class="is-active">Tracking</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </nav>
+
+        <div class="main-nav__actions">
+          <a href="quote.html" class="btn btn--primary btn--sm main-nav__quote">Get a Quote</a>
+
+          <!-- Slide-out panel trigger: serves as mobile nav + desktop info panel -->
+          <button
+            type="button"
+            class="panel-toggle"
+            id="panel-toggle"
+            aria-expanded="false"
+            aria-controls="side-panel"
+            aria-label="Open menu"
+          >
+            <iconify-icon icon="ph:list-bold" class="panel-toggle__icon panel-toggle__icon--menu" aria-hidden="true"></iconify-icon>
+            <iconify-icon icon="ph:x-bold" class="panel-toggle__icon panel-toggle__icon--close" aria-hidden="true"></iconify-icon>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- ===================== SLIDE-OUT PANEL ===================== -->
+  <div class="panel-overlay" id="panel-overlay" hidden></div>
+
+  <aside class="side-panel" id="side-panel" aria-hidden="true" aria-label="Menu and contact information">
+    <button type="button" class="side-panel__close" id="side-panel-close" aria-label="Close menu">
+      <iconify-icon icon="ph:x-bold" aria-hidden="true"></iconify-icon>
+    </button>
+
+    <img src="assets/css/images/WhatsApp Image 2026-07-19 at 08.20.53.jpeg" alt="Blue Edge Logistics" class="side-panel__logo" />
+
+    <!-- Nav links: only visible on mobile/tablet, where the primary-nav is hidden -->
+    <nav class="side-panel__nav" aria-label="Mobile primary">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="tracking.html">Tracking</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="quote.html">Get a Quote</a></li>
+      </ul>
+    </nav>
+
+    <h2 class="side-panel__heading">Welcome to SkyBridge Logistics</h2>
+    <p class="side-panel__text">
+      We move freight across land, air and sea with the same standard every time:
+      on schedule, fully tracked, and handled with care from pickup to delivery.
+    </p>
+
+    <div class="side-panel__contact">
+      <h3><iconify-icon icon="ph:phone-call-bold" aria-hidden="true"></iconify-icon> Contact Us</h3>
+      <a href="mailto:support@blueedgelogistics.com">support@blueedgelogistics.com</a>
+      <span>Working Hours: 7:00am &ndash; 4:00pm</span>
+    </div>
+
+    <ul class="side-panel__social">
+      <li><a href="#" aria-label="Blue Edge Logistics on Facebook"><iconify-icon icon="ph:facebook-logo-bold" aria-hidden="true"></iconify-icon></a></li>
+      <li><a href="#" aria-label="Blue Edge Logistics on X"><iconify-icon icon="ph:x-logo-bold" aria-hidden="true"></iconify-icon></a></li>
+      <li><a href="#" aria-label="Blue Edge Logistics on LinkedIn"><iconify-icon icon="ph:linkedin-logo-bold" aria-hidden="true"></iconify-icon></a></li>
+    </ul>
+  </aside>
+
+  <!-- ===================== PAGE BANNER ===================== -->
+  <section class="page-banner">
+    <svg class="page-banner__network" viewBox="0 0 1400 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+<ellipse cx="868.0" cy="375.0" rx="2.0" ry="340.0" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+<ellipse cx="868.0" cy="375.0" rx="170.0" ry="340.0" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+<ellipse cx="868.0" cy="375.0" rx="294.4" ry="340.0" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+<ellipse cx="868.0" cy="375.0" rx="340.0" ry="340.0" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+<ellipse cx="868.0" cy="375.0" rx="294.4" ry="340.0" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+<ellipse cx="868.0" cy="375.0" rx="170.0" ry="340.0" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+<ellipse cx="868.0" cy="375.0" rx="2.0" ry="340.0" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+<ellipse cx="868.0" cy="148.3" rx="253.4" ry="20.4" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+<ellipse cx="868.0" cy="261.7" rx="320.6" ry="20.4" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+<ellipse cx="868.0" cy="375.0" rx="340.0" ry="20.4" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+<ellipse cx="868.0" cy="488.3" rx="320.6" ry="20.4" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+<ellipse cx="868.0" cy="601.7" rx="253.4" ry="20.4" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+<circle cx="868.0" cy="375.0" r="340.0" fill="none" stroke="rgba(255,255,255,0.14)" stroke-width="1.5"/>
+<line x1="846.5" y1="236.3" x2="896.0" y2="278.5" stroke="rgba(255,255,255,0.10)" stroke-width="1"/>
+<line x1="905.0" y1="476.9" x2="872.4" y2="490.4" stroke="rgba(255,255,255,0.10)" stroke-width="1"/>
+<line x1="905.0" y1="476.9" x2="915.9" y2="482.8" stroke="rgba(255,255,255,0.10)" stroke-width="1"/>
+<line x1="944.8" y1="501.8" x2="908.7" y2="494.1" stroke="rgba(255,255,255,0.10)" stroke-width="1"/>
+<line x1="944.8" y1="501.8" x2="915.9" y2="482.8" stroke="rgba(255,255,255,0.10)" stroke-width="1"/>
+<line x1="944.8" y1="501.8" x2="942.7" y2="492.1" stroke="rgba(255,255,255,0.10)" stroke-width="1"/>
+<line x1="944.8" y1="501.8" x2="901.9" y2="455.4" stroke="rgba(255,255,255,0.10)" stroke-width="1"/>
+<line x1="908.7" y1="494.1" x2="872.4" y2="490.4" stroke="rgba(255,255,255,0.10)" stroke-width="1"/>
+<line x1="908.7" y1="494.1" x2="939.5" y2="576.4" stroke="rgba(255,255,255,0.10)" stroke-width="1"/>
+<line x1="908.7" y1="494.1" x2="928.9" y2="406.9" stroke="rgba(255,255,255,0.10)" stroke-width="1"/>
+<line x1="471.2" y1="46.4" x2="430.5" y2="29.0" stroke="rgba(255,255,255,0.10)" stroke-width="1"/>
+<line x1="997.8" y1="273.4" x2="1015.5" y2="326.7" stroke="rgba(255,255,255,0.10)" stroke-width="1"/>
+<line x1="1021.6" y1="268.1" x2="1014.8" y2="332.7" stroke="rgba(255,255,255,0.10)" stroke-width="1"/>
+<line x1="529.9" y1="276.0" x2="578.5" y2="281.4" stroke="rgba(255,255,255,0.10)" stroke-width="1"/>
+<line x1="865.9" y1="430.9" x2="860.7" y2="390.9" stroke="rgba(255,255,255,0.10)" stroke-width="1"/>
+<line x1="865.9" y1="430.9" x2="801.2" y2="374.9" stroke="rgba(255,255,255,0.10)" stroke-width="1"/>
+<line x1="865.9" y1="430.9" x2="915.9" y2="482.8" stroke="rgba(255,255,255,0.10)" stroke-width="1"/>
+<line x1="865.9" y1="430.9" x2="928.9" y2="406.9" stroke="rgba(255,255,255,0.10)" stroke-width="1"/>
+<line x1="863.2" y1="366.0" x2="801.2" y2="374.9" stroke="rgba(255,255,255,0.10)" stroke-width="1"/>
+<line x1="860.7" y1="390.9" x2="794.8" y2="350.1" stroke="rgba(255,255,255,0.10)" stroke-width="1"/>
+<line x1="860.7" y1="390.9" x2="901.9" y2="455.4" stroke="rgba(255,255,255,0.10)" stroke-width="1"/>
+<line x1="951.7" y1="408.9" x2="999.5" y2="405.5" stroke="rgba(255,255,255,0.10)" stroke-width="1"/>
+<line x1="951.7" y1="408.9" x2="989.2" y2="375.2" stroke="rgba(255,255,255,0.10)" stroke-width="1"/>
+<line x1="951.7" y1="408.9" x2="915.9" y2="482.8" stroke="rgba(255,255,255,0.10)" stroke-width="1"/>
+<line x1="951.7" y1="408.9" x2="942.7" y2="492.1" stroke="rgba(255,255,255,0.10)" stroke-width="1"/>
+<line x1="830.7" y1="566.6" x2="837.2" y2="553.7" stroke="rgba(255,255,255,0.10)" stroke-width="1"/>
+<line x1="852.8" y1="85.6" x2="852.6" y2="76.4" stroke="rgba(255,255,255,0.10)" stroke-width="1"/>
+<line x1="896.0" y1="278.5" x2="909.8" y2="219.1" stroke="rgba(255,255,255,0.10)" stroke-width="1"/>
+<line x1="1180.0" y1="388.0" x2="1126.0" y2="440.9" stroke="rgba(255,255,255,0.10)" stroke-width="1"/>
+<line x1="983.6" y1="388.0" x2="1015.5" y2="326.7" stroke="rgba(255,255,255,0.10)" stroke-width="1"/>
+<line x1="983.6" y1="388.0" x2="928.9" y2="406.9" stroke="rgba(255,255,255,0.10)" stroke-width="1"/>
+<line x1="953.6" y1="563.2" x2="886.8" y2="512.2" stroke="rgba(255,255,255,0.10)" stroke-width="1"/>
+<line x1="953.6" y1="563.2" x2="942.7" y2="492.1" stroke="rgba(255,255,255,0.10)" stroke-width="1"/>
+<line x1="872.4" y1="490.4" x2="886.8" y2="512.2" stroke="rgba(255,255,255,0.10)" stroke-width="1"/>
+<line x1="872.4" y1="490.4" x2="942.7" y2="492.1" stroke="rgba(255,255,255,0.10)" stroke-width="1"/>
+<line x1="872.4" y1="490.4" x2="901.9" y2="455.4" stroke="rgba(255,255,255,0.10)" stroke-width="1"/>
+<line x1="882.8" y1="380.2" x2="928.9" y2="406.9" stroke="rgba(255,255,255,0.10)" stroke-width="1"/>
+<line x1="882.8" y1="380.2" x2="901.9" y2="455.4" stroke="rgba(255,255,255,0.10)" stroke-width="1"/>
+<line x1="999.5" y1="405.5" x2="989.2" y2="375.2" stroke="rgba(255,255,255,0.10)" stroke-width="1"/>
+<line x1="740.8" y1="485.5" x2="764.1" y2="415.1" stroke="rgba(255,255,255,0.10)" stroke-width="1"/>
+<line x1="801.2" y1="374.9" x2="764.1" y2="415.1" stroke="rgba(255,255,255,0.10)" stroke-width="1"/>
+<line x1="1218.7" y1="149.2" x2="1188.2" y2="83.2" stroke="rgba(255,255,255,0.10)" stroke-width="1"/>
+<line x1="989.2" y1="375.2" x2="928.9" y2="406.9" stroke="rgba(255,255,255,0.10)" stroke-width="1"/>
+<line x1="1164.6" y1="297.1" x2="1134.4" y2="276.0" stroke="rgba(255,255,255,0.10)" stroke-width="1"/>
+<line x1="1126.0" y1="440.9" x2="1170.4" y2="484.5" stroke="rgba(255,255,255,0.10)" stroke-width="1"/>
+<line x1="915.9" y1="482.8" x2="886.8" y2="512.2" stroke="rgba(255,255,255,0.10)" stroke-width="1"/>
+<line x1="915.9" y1="482.8" x2="901.9" y2="455.4" stroke="rgba(255,255,255,0.10)" stroke-width="1"/>
+<line x1="928.9" y1="406.9" x2="942.7" y2="492.1" stroke="rgba(255,255,255,0.10)" stroke-width="1"/>
+<line x1="928.9" y1="406.9" x2="901.9" y2="455.4" stroke="rgba(255,255,255,0.10)" stroke-width="1"/>
+<line x1="794.8" y1="350.1" x2="764.1" y2="415.1" stroke="rgba(255,255,255,0.10)" stroke-width="1"/>
+<line x1="886.8" y1="512.2" x2="942.7" y2="492.1" stroke="rgba(255,255,255,0.10)" stroke-width="1"/>
+<line x1="764.1" y1="415.1" x2="776.1" y2="402.0" stroke="rgba(255,255,255,0.10)" stroke-width="1"/>
+<circle cx="35.0" cy="137.5" r="2.4" fill="rgba(255,255,255,0.31)" class="banner-node"/>
+<circle cx="846.5" cy="236.3" r="1.5" fill="rgba(255,255,255,0.29)" class="banner-node"/>
+<circle cx="121.7" cy="211.0" r="2.1" fill="rgba(255,255,255,0.36)" class="banner-node"/>
+<circle cx="905.0" cy="476.9" r="1.8" fill="rgba(255,255,255,0.38)" class="banner-node"/>
+<circle cx="944.8" cy="501.8" r="1.5" fill="rgba(255,255,255,0.50)" class="banner-node banner-node--pulse" style="animation-delay:3.70s;animation-duration:3.58s"/>
+<circle cx="908.7" cy="494.1" r="2.1" fill="rgba(255,255,255,0.51)" class="banner-node"/>
+<circle cx="9.1" cy="402.9" r="1.6" fill="rgba(255,255,255,0.27)" class="banner-node"/>
+<circle cx="476.4" cy="77.7" r="1.6" fill="rgba(255,255,255,0.36)" class="banner-node"/>
+<circle cx="471.2" cy="46.4" r="2.1" fill="rgba(255,255,255,0.36)" class="banner-node"/>
+<circle cx="997.8" cy="273.4" r="1.7" fill="rgba(255,255,255,0.39)" class="banner-node"/>
+<circle cx="1021.6" cy="268.1" r="1.4" fill="rgba(255,255,255,0.40)" class="banner-node"/>
+<circle cx="529.9" cy="276.0" r="2.0" fill="rgba(255,255,255,0.57)" class="banner-node"/>
+<circle cx="865.9" cy="430.9" r="1.6" fill="rgba(255,255,255,0.44)" class="banner-node banner-node--pulse" style="animation-delay:1.15s;animation-duration:3.36s"/>
+<circle cx="863.2" cy="366.0" r="1.9" fill="rgba(255,255,255,0.48)" class="banner-node"/>
+<circle cx="860.7" cy="390.9" r="1.7" fill="rgba(255,255,255,0.32)" class="banner-node"/>
+<circle cx="951.7" cy="408.9" r="2.3" fill="rgba(255,255,255,0.53)" class="banner-node banner-node--pulse" style="animation-delay:0.34s;animation-duration:3.53s"/>
+<circle cx="510.8" cy="185.1" r="2.0" fill="rgba(255,255,255,0.37)" class="banner-node"/>
+<circle cx="830.7" cy="566.6" r="2.1" fill="rgba(255,255,255,0.49)" class="banner-node banner-node--pulse" style="animation-delay:0.80s;animation-duration:2.55s"/>
+<circle cx="852.8" cy="85.6" r="1.5" fill="rgba(255,255,255,0.42)" class="banner-node"/>
+<circle cx="228.8" cy="189.7" r="1.3" fill="rgba(255,255,255,0.40)" class="banner-node"/>
+<circle cx="896.0" cy="278.5" r="1.4" fill="rgba(255,255,255,0.49)" class="banner-node"/>
+<circle cx="1180.0" cy="388.0" r="1.5" fill="rgba(255,255,255,0.48)" class="banner-node banner-node--pulse" style="animation-delay:3.00s;animation-duration:4.04s"/>
+<circle cx="983.6" cy="388.0" r="1.3" fill="rgba(255,255,255,0.40)" class="banner-node banner-node--pulse" style="animation-delay:3.83s;animation-duration:3.54s"/>
+<circle cx="953.6" cy="563.2" r="1.3" fill="rgba(255,255,255,0.34)" class="banner-node"/>
+<circle cx="440.5" cy="327.7" r="1.7" fill="rgba(255,255,255,0.53)" class="banner-node"/>
+<circle cx="1015.5" cy="326.7" r="2.4" fill="rgba(255,255,255,0.46)" class="banner-node"/>
+<circle cx="872.4" cy="490.4" r="2.3" fill="rgba(255,255,255,0.46)" class="banner-node"/>
+<circle cx="578.5" cy="281.4" r="1.8" fill="rgba(255,255,255,0.54)" class="banner-node"/>
+<circle cx="939.5" cy="576.4" r="2.3" fill="rgba(255,255,255,0.51)" class="banner-node"/>
+<circle cx="882.8" cy="380.2" r="1.5" fill="rgba(255,255,255,0.34)" class="banner-node"/>
+<circle cx="661.8" cy="258.0" r="2.1" fill="rgba(255,255,255,0.43)" class="banner-node"/>
+<circle cx="999.5" cy="405.5" r="1.5" fill="rgba(255,255,255,0.28)" class="banner-node"/>
+<circle cx="740.8" cy="485.5" r="1.5" fill="rgba(255,255,255,0.36)" class="banner-node"/>
+<circle cx="16.1" cy="360.4" r="1.4" fill="rgba(255,255,255,0.33)" class="banner-node"/>
+<circle cx="751.8" cy="133.4" r="2.0" fill="rgba(255,255,255,0.27)" class="banner-node"/>
+<circle cx="156.2" cy="217.4" r="1.9" fill="rgba(255,255,255,0.40)" class="banner-node banner-node--pulse" style="animation-delay:1.68s;animation-duration:4.31s"/>
+<circle cx="1181.9" cy="323.5" r="1.9" fill="rgba(255,255,255,0.49)" class="banner-node"/>
+<circle cx="801.2" cy="374.9" r="2.1" fill="rgba(255,255,255,0.38)" class="banner-node banner-node--pulse" style="animation-delay:1.41s;animation-duration:4.01s"/>
+<circle cx="1218.7" cy="149.2" r="2.2" fill="rgba(255,255,255,0.58)" class="banner-node"/>
+<circle cx="852.6" cy="76.4" r="2.1" fill="rgba(255,255,255,0.44)" class="banner-node"/>
+<circle cx="755.1" cy="389.3" r="1.5" fill="rgba(255,255,255,0.33)" class="banner-node"/>
+<circle cx="989.2" cy="375.2" r="1.2" fill="rgba(255,255,255,0.37)" class="banner-node"/>
+<circle cx="1164.6" cy="297.1" r="1.7" fill="rgba(255,255,255,0.31)" class="banner-node"/>
+<circle cx="430.5" cy="29.0" r="1.4" fill="rgba(255,255,255,0.47)" class="banner-node banner-node--pulse" style="animation-delay:1.58s;animation-duration:3.63s"/>
+<circle cx="1325.7" cy="42.8" r="1.2" fill="rgba(255,255,255,0.47)" class="banner-node banner-node--pulse" style="animation-delay:1.85s;animation-duration:2.60s"/>
+<circle cx="1126.0" cy="440.9" r="1.7" fill="rgba(255,255,255,0.32)" class="banner-node"/>
+<circle cx="179.7" cy="237.6" r="2.1" fill="rgba(255,255,255,0.38)" class="banner-node"/>
+<circle cx="837.2" cy="553.7" r="2.2" fill="rgba(255,255,255,0.34)" class="banner-node banner-node--pulse" style="animation-delay:0.08s;animation-duration:3.58s"/>
+<circle cx="915.9" cy="482.8" r="2.4" fill="rgba(255,255,255,0.37)" class="banner-node"/>
+<circle cx="281.6" cy="155.9" r="2.1" fill="rgba(255,255,255,0.48)" class="banner-node"/>
+<circle cx="909.8" cy="219.1" r="2.3" fill="rgba(255,255,255,0.32)" class="banner-node banner-node--pulse" style="animation-delay:0.61s;animation-duration:2.75s"/>
+<circle cx="928.9" cy="406.9" r="2.0" fill="rgba(255,255,255,0.45)" class="banner-node banner-node--pulse" style="animation-delay:2.80s;animation-duration:4.03s"/>
+<circle cx="794.8" cy="350.1" r="1.4" fill="rgba(255,255,255,0.46)" class="banner-node"/>
+<circle cx="1080.9" cy="431.0" r="1.3" fill="rgba(255,255,255,0.54)" class="banner-node"/>
+<circle cx="1134.4" cy="276.0" r="1.3" fill="rgba(255,255,255,0.26)" class="banner-node"/>
+<circle cx="886.8" cy="512.2" r="2.0" fill="rgba(255,255,255,0.59)" class="banner-node"/>
+<circle cx="1103.8" cy="517.2" r="2.1" fill="rgba(255,255,255,0.28)" class="banner-node"/>
+<circle cx="578.9" cy="402.6" r="2.0" fill="rgba(255,255,255,0.29)" class="banner-node"/>
+<circle cx="266.6" cy="48.5" r="2.2" fill="rgba(255,255,255,0.46)" class="banner-node banner-node--pulse" style="animation-delay:3.94s;animation-duration:4.07s"/>
+<circle cx="713.1" cy="419.4" r="1.6" fill="rgba(255,255,255,0.40)" class="banner-node"/>
+<circle cx="942.7" cy="492.1" r="1.8" fill="rgba(255,255,255,0.37)" class="banner-node"/>
+<circle cx="764.1" cy="415.1" r="2.2" fill="rgba(255,255,255,0.29)" class="banner-node"/>
+<circle cx="348.1" cy="95.1" r="2.0" fill="rgba(255,255,255,0.54)" class="banner-node"/>
+<circle cx="776.1" cy="402.0" r="1.7" fill="rgba(255,255,255,0.51)" class="banner-node"/>
+<circle cx="1014.8" cy="332.7" r="1.5" fill="rgba(255,255,255,0.53)" class="banner-node"/>
+<circle cx="770.5" cy="25.3" r="1.8" fill="rgba(255,255,255,0.40)" class="banner-node"/>
+<circle cx="1170.4" cy="484.5" r="1.5" fill="rgba(255,255,255,0.55)" class="banner-node"/>
+<circle cx="1188.2" cy="83.2" r="1.3" fill="rgba(255,255,255,0.56)" class="banner-node banner-node--pulse" style="animation-delay:1.86s;animation-duration:3.72s"/>
+<circle cx="901.9" cy="455.4" r="1.7" fill="rgba(255,255,255,0.26)" class="banner-node"/>
+<circle cx="601.0" cy="514.7" r="1.4" fill="rgba(255,255,255,0.32)" class="banner-node"/>
+    </svg>
+    <div class="container page-banner__inner">
+      <h1 class="page-banner__title reveal-left">Tracking</h1>
+      <nav class="breadcrumb reveal-right" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="index.html">Home</a></li>
+          <li aria-current="page">
+            <iconify-icon icon="ph:caret-right-bold" aria-hidden="true"></iconify-icon>
+            Tracking
+          </li>
+        </ol>
+      </nav>
+    </div>
+  </section>
+
+  <!-- ===================== TRACKING SEARCH ===================== -->
+  <section class="tracking-search">
+    <div class="container">
+      <form class="tracking-form" id="tracking-form" novalidate>
+        <div class="tracking-form__field">
+          <input
+            type="text"
+            id="tracking-code-input"
+            name="trackingCode"
+            placeholder="Enter Tracking number"
+            autocomplete="off"
+            aria-label="Tracking number"
+          />
+        </div>
+        <button type="submit" class="tracking-form__submit">
+          Track
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ===================== TRACKING RESULTS ===================== -->
+  <!-- Populated by assets/js/tracking.js — empty and hidden until
+       a search happens, no page reload, no browser popups. -->
+  <section class="tracking-results-section">
+    <div class="container">
+      <div id="tracking-results" class="tracking-results" hidden></div>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="site-footer">
+
+    <div class="footer-newsletter">
+      <iconify-icon icon="ph:envelope-simple-open-bold" class="footer-newsletter__bg-icon" aria-hidden="true"></iconify-icon>
+      <div class="container footer-newsletter__inner">
+        <div class="footer-newsletter__copy">
+          <p class="eyebrow footer-newsletter__eyebrow">Stay Ahead</p>
+          <h2 class="footer-newsletter__title">Stay Ahead of Every Shipment</h2>
+          <p class="footer-newsletter__text">Shipping tips, service updates, and news from Blue Edge Logistics — straight to your inbox.</p>
+        </div>
+
+        <div class="footer-newsletter__form-wrap">
+          <form class="footer-newsletter__form" id="newsletter-form" novalidate>
+            <div class="footer-newsletter__field">
+              <iconify-icon icon="ph:envelope-simple-bold" aria-hidden="true"></iconify-icon>
+              <input type="email" name="email" id="newsletter-email" placeholder="Your email address" required aria-label="Email address" />
+            </div>
+            <button type="submit" class="footer-newsletter__submit">
+              Subscribe
+              <iconify-icon icon="ph:paper-plane-tilt-bold" aria-hidden="true"></iconify-icon>
+            </button>
+          </form>
+          <p class="footer-newsletter__note">No spam. Unsubscribe anytime.</p>
+          <p class="footer-newsletter__message" id="newsletter-message" role="status" aria-live="polite"></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-main">
+      <div class="container footer-grid">
+
+        <div class="footer-col footer-col--brand reveal-up">
+          <img src="assets/css/images/WhatsApp Image 2026-07-19 at 08.20.53.jpeg" alt="Blue Edge Logistics" class="footer-logo" />
+          <p class="footer-tagline">
+            Reliable freight, courier and tracking solutions across land,
+            air and sea &mdash; built around real-time visibility from
+            pickup to delivery.
+          </p>
+          <ul class="footer-social">
+            <li><a href="#" aria-label="Blue Edge Logistics on Facebook"><iconify-icon icon="ph:facebook-logo-bold"></iconify-icon></a></li>
+            <li><a href="#" aria-label="Blue Edge Logistics on Instagram"><iconify-icon icon="ph:instagram-logo-bold"></iconify-icon></a></li>
+            <li><a href="#" aria-label="Blue Edge Logistics on X"><iconify-icon icon="ph:x-logo-bold"></iconify-icon></a></li>
+            <li><a href="#" aria-label="Blue Edge Logistics on LinkedIn"><iconify-icon icon="ph:linkedin-logo-bold"></iconify-icon></a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col reveal-up">
+          <h3 class="footer-col__title">Quick Links</h3>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="tracking.html">Tracking</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col reveal-up">
+          <h3 class="footer-col__title">Services</h3>
+          <ul class="footer-links">
+            <li><a href="services.html#shipping-solutions">Shipping Solutions</a></li>
+            <li><a href="services.html#warehousing">Warehousing</a></li>
+            <li><a href="services.html#freight-forwarding">Freight Forwarding</a></li>
+            <li><a href="services.html#customs-clearance">Customs Clearance</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col reveal-up">
+          <h3 class="footer-col__title">Contact</h3>
+          <ul class="footer-contact">
+            <li>
+              <iconify-icon icon="ph:map-pin-line-bold" aria-hidden="true"></iconify-icon>
+              London, United Kingdom
+            </li>
+            <li>
+              <a href="mailto:support@blueedgelogistics.com">
+                <iconify-icon icon="ph:envelope-simple-bold" aria-hidden="true"></iconify-icon>
+                support@blueedgelogistics.com
+              </a>
+            </li>
+            <li>
+              <a href="tel:+16064227903">
+                <iconify-icon icon="ph:phone-call-bold" aria-hidden="true"></iconify-icon>
+                +1 (606) 422-7903
+              </a>
+            </li>
+            <li>
+              <iconify-icon icon="ph:clock-bold" aria-hidden="true"></iconify-icon>
+              Mon &ndash; Fri: 7:00am &ndash; 4:00pm
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container footer-bottom__inner">
+        <p>&copy; <span id="current-year">2026</span> Blue Edge Logistics. All rights reserved.</p>
+        <ul class="footer-legal">
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms of Service</a></li>
+        </ul>
+      </div>
+    </div>
+
+  </footer>
+
+  <button type="button" class="back-to-top" id="back-to-top" aria-label="Back to top">
+    <iconify-icon icon="ph:arrow-up-bold" aria-hidden="true"></iconify-icon>
+  </button>
+
+  <script src="assets/js/main.js" defer></script>
+  <script src="assets/js/animations.js" defer></script>
+  <script src="assets/js/tracking.js" defer></script>
+</body>
+</html>

@@ -64,6 +64,92 @@
     gap: var(--space-lg);
   }
 
+  .page-banner__title {
+    font-size: var(--text-3xl);
+  }
+
+  .about-story__inner {
+    grid-template-columns: 1fr;
+  }
+
+  .about-collage__main {
+    min-height: 340px;
+  }
+
+  .about-collage__top,
+  .about-collage__bottom {
+    min-height: 160px;
+  }
+
+  .who-we-are__inner {
+    grid-template-columns: 1fr;
+  }
+
+  .who-we-are__media {
+    order: -1;
+  }
+
+  .who-we-are__stats {
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: var(--space-lg);
+  }
+
+  .wordmark-marquee__item {
+    font-size: var(--text-lg);
+  }
+
+  .testimonial-alt-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+  }
+
+  .services-photo-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .faq-section__inner {
+    grid-template-columns: 1fr;
+  }
+
+  .faq-section__text {
+    max-width: 60ch;
+  }
+
+  .tracking-result-card__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .contact-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .gallery-item--large {
+    grid-column: span 2;
+    grid-row: span 2;
+  }
+
+  .gallery-item--wide {
+    grid-column: span 2;
+  }
+
+  .contact-social-rail {
+    flex-direction: row;
+    height: auto;
+    margin-top: var(--space-lg);
+  }
+
+  .contact-social-rail__line {
+    display: none;
+  }
+
+  .contact-social-rail__list {
+    flex-direction: row;
+  }
+
   .footer-col--brand {
     grid-column: 1 / -1;
   }
@@ -86,6 +172,14 @@
 
   .utility-bar__contact li:last-child {
     display: none; /* location line — email is the priority contact */
+  }
+
+  /* Explicit here rather than left inherited from 1024px — the
+     row height and gap were tuned for a wider column at that
+     breakpoint and feel loose at true tablet-landscape width. */
+  .gallery-grid {
+    grid-auto-rows: 150px;
+    gap: var(--space-sm);
   }
 
   .hero {
@@ -223,6 +317,110 @@
     width: 42px;
     height: 42px;
   }
+
+  .page-banner {
+    min-height: 220px;
+    padding-block: var(--space-lg);
+  }
+
+  .page-banner__inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-sm);
+  }
+
+  .page-banner__title {
+    font-size: var(--text-2xl);
+  }
+
+  .about-collage {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+  }
+
+  .about-collage__main {
+    grid-column: 1 / 3;
+    grid-row: 1;
+    min-height: 280px;
+  }
+
+  .about-collage__top {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .about-collage__bottom {
+    grid-column: 2;
+    grid-row: 2;
+  }
+
+  /* Precise overlap positioning gets fragile at this width —
+     drop the badge out of the flow and center it below the
+     collage instead of straddling a seam. */
+  .about-collage__badge {
+    position: static;
+    transform: none;
+    margin-top: var(--space-md);
+    width: fit-content;
+    margin-inline: auto;
+    animation: none;
+  }
+
+  .about-story__features {
+    gap: var(--space-lg);
+  }
+
+  .who-we-are__stats {
+    grid-template-columns: 1fr;
+  }
+
+  .stat-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .who-stat__number {
+    font-size: var(--text-3xl);
+  }
+
+  .testimonial-alt {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .testimonial-alt__stars {
+    justify-content: center;
+  }
+
+  .cta-banner-simple__inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .cta-banner-simple__button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .services-photo-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .services-grid-section__title {
+    font-size: var(--text-2xl);
+  }
+
+  .faq-item__question {
+    gap: var(--space-sm);
+  }
+
+  .faq-item__question-text {
+    font-size: var(--text-sm);
+  }
+
+  .faq-item__number {
+    font-size: var(--text-lg);
+  }
 }
 
 /* -----------------------------------------------------------
@@ -250,5 +448,82 @@
   .hero__actions {
     flex-direction: column;
     width: 100%;
+  }
+
+  /* At this width a longer question is likely to wrap onto a
+     second line — top-align the row instead of centering, so
+     the chevron sits with the first line rather than floating
+     against the vertical middle of two lines of text. */
+  .faq-item__question {
+    align-items: flex-start;
+    gap: var(--space-sm);
+  }
+
+  .faq-item__chevron {
+    margin-top: 0.15rem;
+  }
+
+  .faq-item__number {
+    font-size: var(--text-base);
+  }
+
+  .tracking-form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .tracking-form__submit {
+    width: 100%;
+  }
+
+  .tracking-result-card {
+    padding: var(--space-lg);
+  }
+
+  .tracking-result-card__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .tracking-result-card__header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .contact-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-form-card {
+    padding: var(--space-lg);
+  }
+
+  .contact-form__submit {
+    width: 100%;
+  }
+
+  .gallery-grid {
+    grid-template-columns: 1fr;
+    grid-auto-rows: 220px;
+  }
+
+  .gallery-item--large,
+  .gallery-item--wide,
+  .gallery-item--tall {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+
+  .lightbox__nav {
+    width: 42px;
+    height: 42px;
+    font-size: 1.1rem;
+  }
+
+  .lightbox__nav--prev {
+    left: var(--space-sm);
+  }
+
+  .lightbox__nav--next {
+    right: var(--space-sm);
   }
 }

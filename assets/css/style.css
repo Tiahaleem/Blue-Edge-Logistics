@@ -1707,3 +1707,1807 @@ select:focus-visible {
     transform: none;
   }
 }
+
+/* -----------------------------------------------------------
+   PAGE BANNER
+   Reused on every inner page (About, Services, Gallery, etc.)
+   as the dark title/breadcrumb header beneath the main nav.
+   The network graphic is a generated SVG, not a photo — crisp
+   at any size, no image file to source, and colored to match
+   the site's palette exactly.
+----------------------------------------------------------- */
+.page-banner {
+  position: relative;
+  background: #0B0B0F;
+  overflow: hidden;
+  padding-block: var(--space-2xl);
+  min-height: 320px;
+  display: flex;
+  align-items: center;
+}
+
+.page-banner__network {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.banner-node--pulse {
+  animation: bannerNodePulse ease-in-out infinite;
+}
+
+@keyframes bannerNodePulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.15; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .banner-node--pulse {
+    animation: none;
+    opacity: 1;
+  }
+}
+
+.page-banner__inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-lg);
+  flex-wrap: wrap;
+}
+
+.page-banner__title {
+  font-size: var(--text-4xl);
+  font-weight: 800;
+  color: var(--color-white);
+  letter-spacing: -0.02em;
+}
+
+.breadcrumb ol {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: var(--text-sm);
+}
+
+.breadcrumb li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.breadcrumb a {
+  color: var(--color-white);
+  transition: color var(--duration-fast) var(--ease-standard);
+}
+
+.breadcrumb a:hover {
+  color: var(--color-primary);
+}
+
+.breadcrumb iconify-icon {
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.breadcrumb li[aria-current="page"] {
+  color: var(--color-white);
+}
+
+/* -----------------------------------------------------------
+   ABOUT STORY
+   Image collage (one large portrait + two stacked landscape
+   shots) with a floating badge straddling the seam between
+   them. Each tile zooms independently on hover, and the badge
+   gets a slow continuous float, echoing the hero's tracking
+   card so the two "floating card over photo" moments feel
+   like the same design language rather than one-offs.
+----------------------------------------------------------- */
+.about-story {
+  padding-block: var(--space-2xl);
+}
+
+.about-story__inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-xl);
+  align-items: center;
+}
+
+.about-collage {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: var(--space-md);
+}
+
+.about-collage__main,
+.about-collage__top,
+.about-collage__bottom {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+}
+
+.about-collage__main {
+  grid-column: 1;
+  grid-row: 1 / 3;
+  min-height: 420px;
+}
+
+.about-collage__top {
+  grid-column: 2;
+  grid-row: 1;
+  min-height: 198px;
+}
+
+.about-collage__bottom {
+  grid-column: 2;
+  grid-row: 2;
+  min-height: 198px;
+}
+
+.about-collage__main img,
+.about-collage__top img,
+.about-collage__bottom img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 700ms var(--ease-standard);
+}
+
+.about-collage__main:hover img,
+.about-collage__top:hover img,
+.about-collage__bottom:hover img {
+  transform: scale(1.07);
+}
+
+.about-collage__badge {
+  position: absolute;
+  left: 47%;
+  top: 50%;
+  transform: translate(-30%, -50%);
+  z-index: 2;
+  background: var(--color-surface);
+  border: 2px solid var(--color-primary);
+  border-radius: var(--radius-md);
+  padding: var(--space-md) var(--space-lg);
+  text-align: center;
+  box-shadow: 0 20px 40px -16px rgba(18, 18, 26, 0.28);
+  animation: aboutBadgeFloat 4.5s ease-in-out infinite;
+}
+
+.about-collage__badge-number {
+  display: block;
+  font-family: var(--font-display);
+  font-size: var(--text-3xl);
+  font-weight: 800;
+  color: var(--color-ink);
+  line-height: 1;
+  margin-bottom: 0.35rem;
+}
+
+.about-collage__badge-label {
+  display: block;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-ink);
+}
+
+@keyframes aboutBadgeFloat {
+  0%, 100% { transform: translate(-30%, -50%); }
+  50% { transform: translate(-30%, calc(-50% - 8px)); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-collage__badge {
+    animation: none;
+  }
+}
+
+.about-story__title {
+  font-size: var(--text-3xl);
+  font-weight: 800;
+  letter-spacing: -0.015em;
+  margin-bottom: var(--space-md);
+}
+
+.about-story__text {
+  color: var(--color-ink-soft);
+  font-size: var(--text-base);
+  line-height: 1.75;
+  margin-bottom: var(--space-lg);
+}
+
+.about-story__features {
+  display: flex;
+  gap: var(--space-xl);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-lg);
+}
+
+.about-feature {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding-bottom: var(--space-sm);
+  border-bottom: 2px solid var(--color-border);
+  font-weight: 700;
+  font-size: var(--text-base);
+  color: var(--color-ink);
+  transition: border-color var(--duration-base) var(--ease-standard);
+}
+
+.about-feature:hover {
+  border-color: var(--color-primary);
+}
+
+.about-feature iconify-icon {
+  font-size: 1.4rem;
+  color: var(--color-primary);
+  transition: transform 420ms var(--ease-spring);
+}
+
+.about-feature:hover iconify-icon {
+  transform: scale(1.15) rotate(-6deg);
+}
+
+.about-story__checklist {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.about-story__checklist li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  color: var(--color-ink-soft);
+  font-size: var(--text-base);
+  line-height: 1.6;
+  transition: color var(--duration-fast) var(--ease-standard);
+}
+
+.about-story__checklist li:hover {
+  color: var(--color-ink);
+}
+
+.about-story__checklist iconify-icon {
+  color: var(--color-primary);
+  font-size: 1.1rem;
+  margin-top: 2px;
+  flex-shrink: 0;
+  transition: transform 420ms var(--ease-spring);
+}
+
+.about-story__checklist li:hover iconify-icon {
+  transform: scale(1.3) rotate(-10deg);
+}
+
+/* -----------------------------------------------------------
+   WHO WE ARE
+   Hollow/outlined numerals via -webkit-text-stroke — a
+   typographic treatment not used anywhere else on the site,
+   giving this stat row its own distinct identity rather than
+   reusing the homepage's solid mono-number style.
+----------------------------------------------------------- */
+.who-we-are {
+  padding-block: var(--space-2xl);
+}
+
+.who-we-are__inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-xl);
+  align-items: center;
+  margin-bottom: var(--space-2xl);
+}
+
+.who-we-are__title {
+  font-size: var(--text-3xl);
+  font-weight: 800;
+  letter-spacing: -0.015em;
+  margin-bottom: var(--space-md);
+}
+
+.who-we-are__text {
+  color: var(--color-ink-soft);
+  font-size: var(--text-base);
+  line-height: 1.75;
+  max-width: 46ch;
+}
+
+.who-we-are__media {
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+}
+
+.who-we-are__media img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  transition: transform 700ms var(--ease-standard);
+}
+
+.who-we-are__media:hover img {
+  transform: scale(1.06);
+}
+
+.who-we-are__stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-lg);
+}
+
+.who-stat {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  padding-bottom: var(--space-md);
+  border-bottom: 2px solid var(--color-border);
+  transition: border-color var(--duration-base) var(--ease-standard);
+}
+
+.who-stat:hover {
+  border-color: var(--color-primary);
+}
+
+.who-stat__number {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-weight: 800;
+  line-height: 1;
+  /* Fallback for browsers without text-stroke support: solid
+     color, not hollow — still fully visible either way. */
+  color: var(--color-ink-soft);
+  transition: color 420ms var(--ease-standard),
+              transform 420ms var(--ease-spring);
+  display: inline-block;
+}
+
+/* Universal — applies whether or not text-stroke is supported. */
+.who-stat:hover .who-stat__number {
+  transform: scale(1.06);
+}
+
+/* Fallback browsers: hover swaps solid gray for solid indigo. */
+@supports not (-webkit-text-stroke: 1px black) {
+  .who-stat:hover .who-stat__number {
+    color: var(--color-primary);
+  }
+}
+
+/* Supporting browsers: stays hollow, only the stroke color
+   changes on hover — filling it solid would look like a glitch. */
+@supports (-webkit-text-stroke: 1px black) {
+  .who-stat__number {
+    color: transparent;
+    -webkit-text-stroke: 1.5px var(--color-ink-soft);
+    transition: -webkit-text-stroke-color 420ms var(--ease-standard),
+                transform 420ms var(--ease-spring);
+  }
+
+  .who-stat:hover .who-stat__number {
+    -webkit-text-stroke-color: var(--color-primary);
+  }
+}
+
+.who-stat__label {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: var(--text-sm);
+  color: var(--color-ink-soft);
+}
+
+/* -----------------------------------------------------------
+   WORDMARK MARQUEE
+   Same two-row, opposite-direction technique as the homepage
+   partners section, with bold/faded alternation for rhythm —
+   matches the reference's visual pattern without reusing real
+   third-party brand names.
+----------------------------------------------------------- */
+.wordmark-marquee {
+  padding-block: var(--space-xl);
+  overflow: hidden;
+}
+
+.wordmark-marquee__row {
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
+  mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
+}
+
+.wordmark-marquee__row + .wordmark-marquee__row {
+  margin-top: var(--space-lg);
+}
+
+.wordmark-marquee__track {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+  width: max-content;
+  animation: wordmarkScroll 45s linear infinite;
+}
+
+.wordmark-marquee__track--reverse {
+  animation-direction: reverse;
+}
+
+.wordmark-marquee__row:hover .wordmark-marquee__track {
+  animation-play-state: paused;
+}
+
+.wordmark-marquee__duplicate {
+  display: contents;
+}
+
+@keyframes wordmarkScroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.wordmark-marquee__item {
+  flex-shrink: 0;
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 800;
+  color: var(--color-ink);
+  white-space: nowrap;
+}
+
+.wordmark-marquee__item--faded {
+  color: var(--color-border);
+}
+
+.wordmark-marquee__sparkle {
+  flex-shrink: 0;
+  color: var(--color-primary);
+  font-size: 1rem;
+  animation: sparkleSpin 6s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wordmark-marquee__track {
+    animation: none;
+  }
+
+  .wordmark-marquee__sparkle {
+    animation: none;
+  }
+}
+
+/* -----------------------------------------------------------
+   TESTIMONIALS (ALT LAYOUT)
+   Standalone avatar circle beside a bordered content card,
+   rather than the homepage's person-column layout. The "dark
+   overshow" hover: a dark tint fades in across the card, the
+   card lifts, and the quote badge pops slightly.
+----------------------------------------------------------- */
+.testimonials-alt {
+  padding-block: var(--space-2xl);
+}
+
+.testimonial-alt-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-xl);
+  margin-bottom: var(--space-xl);
+}
+
+.testimonial-alt {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-lg);
+}
+
+.testimonial-alt__avatar {
+  position: relative;
+  flex-shrink: 0;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  overflow: visible;
+}
+
+.testimonial-alt__avatar img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  transition: filter var(--duration-base) var(--ease-standard);
+}
+
+.testimonial-alt__badge {
+  position: absolute;
+  right: -6px;
+  bottom: -6px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  transition: transform 420ms var(--ease-spring);
+}
+
+.testimonial-alt__badge--dark {
+  background: var(--color-ink);
+  color: var(--color-white);
+}
+
+.testimonial-alt__badge--light {
+  background: var(--color-white);
+  color: var(--color-primary);
+  border: 2px solid var(--color-primary);
+}
+
+.testimonial-alt__body {
+  position: relative;
+  flex: 1;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-lg);
+  transition: border-color var(--duration-base) var(--ease-standard),
+              transform var(--duration-base) var(--ease-standard),
+              box-shadow var(--duration-base) var(--ease-standard);
+}
+
+/* The "dark overshow" — a tint that fades in on hover rather
+   than existing in the markup permanently, so it doesn't dim
+   the card until the user actually interacts with it. */
+.testimonial-alt__body::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: rgba(18, 18, 26, 0.035);
+  opacity: 0;
+  transition: opacity var(--duration-base) var(--ease-standard);
+  pointer-events: none;
+}
+
+.testimonial-alt:hover .testimonial-alt__body {
+  border-color: var(--color-primary);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px -22px rgba(18, 18, 26, 0.25);
+}
+
+.testimonial-alt:hover .testimonial-alt__body::after {
+  opacity: 1;
+}
+
+.testimonial-alt:hover .testimonial-alt__avatar img {
+  filter: brightness(0.92);
+}
+
+.testimonial-alt:hover .testimonial-alt__badge {
+  transform: scale(1.15) rotate(-8deg);
+}
+
+.testimonial-alt__text {
+  position: relative;
+  z-index: 1;
+  color: var(--color-ink-soft);
+  font-size: var(--text-sm);
+  line-height: 1.7;
+  margin-bottom: var(--space-md);
+}
+
+.testimonial-alt__name {
+  position: relative;
+  z-index: 1;
+  font-weight: 700;
+  font-size: var(--text-base);
+  margin-bottom: 0.4rem;
+}
+
+.testimonial-alt__stars {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  gap: 2px;
+  color: var(--color-primary);
+  font-size: 0.85rem;
+}
+
+.testimonial-alt__divider {
+  width: 120px;
+  height: 3px;
+  background: var(--color-primary);
+  margin-inline: auto;
+  border-radius: 2px;
+}
+
+/* -----------------------------------------------------------
+   CTA BANNER (SIMPLE)
+   Flat solid indigo — a deliberate contrast to the gradient
+   used on the promo banner and footer newsletter elsewhere, so
+   this reads as its own distinct moment, not a repeated pattern.
+----------------------------------------------------------- */
+.cta-banner-simple {
+  background: var(--color-primary);
+  padding-block: var(--space-xl);
+}
+
+.cta-banner-simple__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-lg);
+  flex-wrap: wrap;
+}
+
+.cta-banner-simple__title {
+  font-size: var(--text-2xl);
+  font-weight: 800;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  color: var(--color-white);
+  max-width: 640px;
+}
+
+.cta-banner-simple__button {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  background: var(--color-white);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: var(--text-sm);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 1rem 1.75rem;
+  border-radius: var(--radius-sm);
+  transition: background var(--duration-fast) var(--ease-standard),
+              color var(--duration-fast) var(--ease-standard),
+              transform var(--duration-fast) var(--ease-standard),
+              box-shadow var(--duration-fast) var(--ease-standard);
+}
+
+.cta-banner-simple__button:hover {
+  background: var(--color-ink);
+  color: var(--color-white);
+  transform: translateY(-3px);
+  box-shadow: 0 16px 32px -14px rgba(0, 0, 0, 0.4);
+}
+
+.cta-banner-simple__button:active {
+  transform: scale(0.95);
+  transition-duration: 100ms;
+}
+
+/* -----------------------------------------------------------
+   SERVICES PHOTO GRID
+   Photo-topped cards with an icon badge overlapping the seam
+   between image and body. On hover: an indigo tint fades in
+   over the photo, the card lifts, and the icon badge shifts
+   position — slides right and rises further up into the photo
+   — rather than just sitting still and changing color.
+----------------------------------------------------------- */
+.services-grid-section {
+  padding-block: var(--space-2xl);
+}
+
+.services-grid-section__title {
+  font-size: var(--text-3xl);
+  font-weight: 800;
+  letter-spacing: -0.015em;
+  margin-bottom: var(--space-xl);
+}
+
+.services-photo-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-lg);
+}
+
+.service-card-photo {
+  position: relative;
+  transition: transform var(--duration-base) var(--ease-standard),
+              box-shadow var(--duration-base) var(--ease-standard);
+}
+
+.service-card-photo:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 28px 56px -24px rgba(18, 18, 26, 0.28);
+  z-index: 2;
+}
+
+.service-card-photo__media {
+  position: relative;
+  height: 220px;
+  overflow: hidden;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}
+
+.service-card-photo__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 700ms var(--ease-standard);
+}
+
+.service-card-photo:hover .service-card-photo__media img {
+  transform: scale(1.06);
+}
+
+/* The colored tint — fades in on hover, not present at rest. */
+.service-card-photo__tint {
+  position: absolute;
+  inset: 0;
+  background: rgba(75, 33, 226, 0.55);
+  opacity: 0;
+  transition: opacity var(--duration-base) var(--ease-standard);
+}
+
+.service-card-photo:hover .service-card-photo__tint {
+  opacity: 1;
+}
+
+.service-card-photo__body {
+  position: relative;
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-top: none;
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+  padding: var(--space-xl) var(--space-lg) var(--space-lg);
+  transition: border-color var(--duration-base) var(--ease-standard);
+}
+
+.service-card-photo:hover .service-card-photo__body {
+  border-color: var(--color-primary);
+}
+
+.service-card-photo__icon {
+  position: absolute;
+  top: -28px;
+  left: var(--space-lg);
+  width: 56px;
+  height: 56px;
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: var(--color-primary);
+  box-shadow: 0 12px 24px -12px rgba(18, 18, 26, 0.3);
+  transition: background var(--duration-base) var(--ease-standard),
+              color var(--duration-base) var(--ease-standard),
+              transform 420ms var(--ease-spring);
+}
+
+.service-card-photo:hover .service-card-photo__icon {
+  background: var(--color-primary);
+  color: var(--color-white);
+  transform: translate(8px, -12px);
+}
+
+.service-card-photo__title {
+  font-size: var(--text-lg);
+  font-weight: 700;
+  margin-bottom: var(--space-sm);
+}
+
+.service-card-photo__divider {
+  height: 1px;
+  background: var(--color-border);
+  margin-bottom: var(--space-md);
+  transition: background var(--duration-base) var(--ease-standard);
+}
+
+.service-card-photo:hover .service-card-photo__divider {
+  background: var(--color-primary);
+}
+
+.service-card-photo__text {
+  color: var(--color-ink-soft);
+  font-size: var(--text-sm);
+  line-height: 1.65;
+}
+
+/* Touch devices have no real hover state, so the tint/icon-shift
+   effect above would simply never appear. Rather than leave the
+   card completely flat, give touch users a permanent, lighter
+   version instead — no interaction required, and it never fights
+   with a tap that might otherwise navigate somewhere. Targets
+   actual touch capability, not just narrow screens, since a
+   resized desktop browser window still has real hover. */
+@media (hover: none) and (pointer: coarse) {
+  .service-card-photo__tint {
+    opacity: 0.22;
+  }
+
+  .service-card-photo__icon {
+    background: var(--color-primary);
+    color: var(--color-white);
+    transform: translate(4px, -12px);
+  }
+
+  .service-card-photo__divider {
+    background: var(--color-primary);
+  }
+
+  .service-card-photo:active {
+    transform: scale(0.98);
+    transition-duration: 100ms;
+  }
+}
+
+/* -----------------------------------------------------------
+   FAQ ACCORDION
+   Expand/collapse uses the grid-template-rows 0fr/1fr trick —
+   smooth height animation without JS measuring the content's
+   height. Numbers reuse the hollow-stroke technique from the
+   About page's stat numbers, with the same safe @supports
+   fallback to a solid color.
+----------------------------------------------------------- */
+.faq-section {
+  padding-block: var(--space-2xl);
+}
+
+.faq-section__inner {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: var(--space-xl);
+  align-items: start;
+}
+
+.faq-section__title {
+  font-size: var(--text-3xl);
+  font-weight: 800;
+  letter-spacing: -0.015em;
+  margin-bottom: var(--space-md);
+}
+
+.faq-section__text {
+  color: var(--color-ink-soft);
+  font-size: var(--text-base);
+  line-height: 1.75;
+  max-width: 34ch;
+}
+
+.faq-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.faq-item__question {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding-block: var(--space-md);
+  text-align: left;
+  border-radius: var(--radius-sm);
+  transition: background var(--duration-fast) var(--ease-standard);
+}
+
+.faq-item__question:hover {
+  background: var(--color-primary-tint);
+}
+
+.faq-item__number {
+  flex-shrink: 0;
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 800;
+  /* Fallback: solid gray if text-stroke isn't supported. */
+  color: var(--color-border);
+  transition: color var(--duration-base) var(--ease-standard);
+}
+
+@supports (-webkit-text-stroke: 1px black) {
+  .faq-item__number {
+    color: transparent;
+    -webkit-text-stroke: 1.5px var(--color-border);
+    transition: -webkit-text-stroke-color var(--duration-base) var(--ease-standard);
+  }
+}
+
+.faq-item__question-text {
+  flex: 1;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--text-base);
+  color: var(--color-ink);
+  transition: color var(--duration-base) var(--ease-standard);
+}
+
+.faq-item__chevron {
+  flex-shrink: 0;
+  font-size: 1.1rem;
+  color: var(--color-ink);
+  transition: transform 420ms var(--ease-spring),
+              color var(--duration-base) var(--ease-standard);
+}
+
+/* Active/expanded state, driven by aria-expanded so styling and
+   accessibility state stay in sync automatically. */
+.faq-item__question[aria-expanded="true"] .faq-item__question-text {
+  color: var(--color-primary);
+}
+
+.faq-item__question[aria-expanded="true"] .faq-item__number {
+  color: var(--color-primary);
+}
+
+@supports (-webkit-text-stroke: 1px black) {
+  .faq-item__question[aria-expanded="true"] .faq-item__number {
+    -webkit-text-stroke-color: var(--color-primary);
+  }
+}
+
+.faq-item__question[aria-expanded="true"] .faq-item__chevron {
+  transform: rotate(180deg);
+  color: var(--color-primary);
+}
+
+.faq-item__divider {
+  height: 1px;
+  background: var(--color-border);
+  transition: background var(--duration-base) var(--ease-standard);
+}
+
+.faq-item:has(.faq-item__question[aria-expanded="true"]) .faq-item__divider {
+  background: var(--color-primary);
+  height: 2px;
+}
+
+.faq-item__answer-wrap {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 420ms var(--ease-standard);
+}
+
+.faq-item__answer-wrap.is-open {
+  grid-template-rows: 1fr;
+}
+
+.faq-item__answer-inner {
+  overflow: hidden;
+}
+
+.faq-item__answer {
+  padding-top: var(--space-sm);
+  padding-bottom: var(--space-sm);
+  color: var(--color-ink-soft);
+  font-size: var(--text-sm);
+  line-height: 1.7;
+  max-width: 68ch;
+}
+
+/* -----------------------------------------------------------
+   TRACKING SEARCH
+   Underline-style input, matching the reference's minimal
+   look, rather than a boxed input — keeps this section quiet
+   so the results (once revealed) become the visual focus.
+----------------------------------------------------------- */
+.tracking-search {
+  padding-block: var(--space-xl);
+}
+
+.tracking-form {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--space-lg);
+}
+
+.tracking-form__field {
+  flex: 1;
+}
+
+.tracking-form__field input {
+  width: 100%;
+  border: none;
+  border-bottom: 1.5px solid var(--color-border);
+  padding-block: 0.85rem;
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  color: var(--color-ink);
+  background: transparent;
+  transition: border-color var(--duration-fast) var(--ease-standard);
+}
+
+.tracking-form__field input::placeholder {
+  color: var(--color-ink-soft);
+}
+
+.tracking-form__field input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+}
+
+.tracking-form__submit {
+  flex-shrink: 0;
+  background: var(--color-primary);
+  color: var(--color-white);
+  font-weight: 700;
+  font-size: var(--text-sm);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 0.95rem 2rem;
+  border-radius: var(--radius-sm);
+  transition: background var(--duration-fast) var(--ease-standard),
+              transform var(--duration-fast) var(--ease-standard),
+              box-shadow var(--duration-fast) var(--ease-standard);
+}
+
+.tracking-form__submit:hover {
+  background: var(--color-primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px -12px rgba(75, 33, 226, 0.5);
+}
+
+.tracking-form__submit:active {
+  transform: scale(0.95);
+  transition-duration: 100ms;
+}
+
+/* -----------------------------------------------------------
+   TRACKING RESULTS
+   Hidden by default, injected by tracking.js. Entrance is a
+   simple fade + rise, triggered by JS toggling .is-visible
+   right after the [hidden] attribute is removed.
+----------------------------------------------------------- */
+.tracking-results-section {
+  padding-bottom: var(--space-2xl);
+}
+
+.tracking-results {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 480ms var(--ease-standard),
+              transform 480ms var(--ease-spring);
+}
+
+.tracking-results.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tracking-results {
+    transition: opacity var(--duration-fast) linear;
+    transform: none;
+  }
+}
+
+.tracking-result-card {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+}
+
+.tracking-result-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+  padding-bottom: var(--space-lg);
+  margin-bottom: var(--space-lg);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.tracking-result-card__label {
+  display: block;
+  font-size: var(--text-xs);
+  color: var(--color-ink-soft);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 0.3rem;
+}
+
+.tracking-result-card__code {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: var(--text-xl);
+  font-weight: 700;
+  color: var(--color-ink);
+}
+
+.tracking-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 0.55rem 1rem;
+  border-radius: 999px;
+}
+
+.tracking-status-badge__dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+}
+
+.tracking-status-badge--in-transit {
+  background: var(--color-primary-tint);
+  color: var(--color-primary);
+}
+
+.tracking-status-badge--in-transit .tracking-status-badge__dot {
+  background: var(--color-primary);
+  animation: statusPulse 2s ease-out infinite;
+}
+
+.tracking-status-badge--delivered {
+  background: rgba(22, 163, 74, 0.12);
+  color: var(--color-status-active);
+}
+
+.tracking-status-badge--delivered .tracking-status-badge__dot {
+  background: var(--color-status-active);
+}
+
+.tracking-status-badge--pending {
+  background: var(--color-surface);
+  color: var(--color-ink-soft);
+}
+
+.tracking-status-badge--pending .tracking-status-badge__dot {
+  background: var(--color-ink-soft);
+}
+
+.tracking-result-card__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-lg);
+  margin-bottom: var(--space-xl);
+}
+
+.tracking-result-card__field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.tracking-result-card__field-label {
+  font-size: var(--text-xs);
+  color: var(--color-ink-soft);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.tracking-result-card__field-value {
+  font-size: var(--text-base);
+  font-weight: 600;
+  color: var(--color-ink);
+}
+
+.tracking-timeline-wrap__title {
+  font-size: var(--text-lg);
+  font-weight: 700;
+  margin-bottom: var(--space-md);
+}
+
+.tracking-timeline {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  padding-left: var(--space-lg);
+}
+
+.tracking-timeline::before {
+  content: '';
+  position: absolute;
+  left: 4px;
+  top: 6px;
+  bottom: 6px;
+  width: 2px;
+  background: var(--color-border);
+}
+
+.tracking-timeline__item {
+  position: relative;
+  display: flex;
+  gap: var(--space-md);
+}
+
+.tracking-timeline__dot {
+  position: absolute;
+  left: calc(-1 * var(--space-lg) + 0px);
+  top: 4px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  border: 2px solid var(--color-white);
+  box-shadow: 0 0 0 1.5px var(--color-primary);
+}
+
+.tracking-timeline__content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.tracking-timeline__date {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--color-ink-soft);
+}
+
+.tracking-timeline__label {
+  font-weight: 700;
+  font-size: var(--text-base);
+  color: var(--color-ink);
+}
+
+.tracking-timeline__location {
+  font-size: var(--text-sm);
+  color: var(--color-ink-soft);
+}
+
+/* -----------------------------------------------------------
+   TRACKING — NOT FOUND
+   Neutral/amber tone rather than alarming red — this is a
+   "please check the code," not a system error.
+----------------------------------------------------------- */
+.tracking-not-found {
+  text-align: center;
+  padding: var(--space-2xl) var(--space-lg);
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius-lg);
+}
+
+.tracking-not-found iconify-icon {
+  font-size: 2.5rem;
+  color: var(--color-ink-soft);
+  margin-bottom: var(--space-md);
+}
+
+.tracking-not-found h3 {
+  font-size: var(--text-xl);
+  font-weight: 700;
+  margin-bottom: var(--space-sm);
+}
+
+.tracking-not-found p {
+  color: var(--color-ink-soft);
+  font-size: var(--text-base);
+  max-width: 46ch;
+  margin-inline: auto;
+}
+
+/* -----------------------------------------------------------
+   CONTACT SECTION
+----------------------------------------------------------- */
+.contact-section {
+  padding-block: var(--space-2xl);
+}
+
+.contact-layout {
+  display: grid;
+  grid-template-columns: 0.85fr 1.6fr auto;
+  gap: var(--space-xl);
+  align-items: center;
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+}
+
+.contact-info__item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-md);
+}
+
+.contact-info__icon {
+  flex-shrink: 0;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--color-primary-tint);
+  color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  transition: background var(--duration-base) var(--ease-standard),
+              transform 420ms var(--ease-spring);
+}
+
+.contact-info__item:hover .contact-info__icon {
+  background: var(--color-primary);
+  color: var(--color-white);
+  transform: scale(1.08);
+}
+
+.contact-info__item h3 {
+  font-size: var(--text-base);
+  font-weight: 700;
+  margin-bottom: 0.3rem;
+}
+
+.contact-info__item p {
+  color: var(--color-ink-soft);
+  font-size: var(--text-sm);
+}
+
+.contact-info__item p a {
+  color: var(--color-ink-soft);
+  transition: color var(--duration-fast) var(--ease-standard);
+}
+
+.contact-info__item p a:hover {
+  color: var(--color-primary);
+}
+
+.contact-form-card {
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+  box-shadow: 0 24px 60px -32px rgba(18, 18, 26, 0.2);
+}
+
+.contact-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-lg) var(--space-xl);
+  margin-bottom: var(--space-lg);
+}
+
+.contact-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.contact-field--message {
+  margin-bottom: var(--space-lg);
+}
+
+.contact-field label {
+  font-size: var(--text-sm);
+  color: var(--color-ink-soft);
+}
+
+.contact-field input,
+.contact-field textarea {
+  border: none;
+  border-bottom: 1.5px solid var(--color-border);
+  padding-block: 0.6rem;
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  color: var(--color-ink);
+  background: transparent;
+  resize: none;
+  transition: border-color var(--duration-fast) var(--ease-standard);
+}
+
+.contact-field input:focus,
+.contact-field textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+}
+
+.contact-form__submit-wrap {
+  display: flex;
+  justify-content: center;
+}
+
+.contact-form__submit {
+  background: var(--color-primary);
+  color: var(--color-white);
+  font-weight: 700;
+  font-size: var(--text-sm);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 0.95rem 2.5rem;
+  border-radius: var(--radius-sm);
+  transition: background var(--duration-fast) var(--ease-standard),
+              transform var(--duration-fast) var(--ease-standard),
+              box-shadow var(--duration-fast) var(--ease-standard);
+}
+
+.contact-form__submit:hover {
+  background: var(--color-primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px -12px rgba(75, 33, 226, 0.5);
+}
+
+.contact-form__submit:active {
+  transform: scale(0.95);
+  transition-duration: 100ms;
+}
+
+.contact-form__status {
+  text-align: center;
+  font-size: var(--text-sm);
+  color: var(--color-status-active);
+  margin-top: var(--space-md);
+  min-height: 1.2em;
+}
+
+.contact-form__status--error {
+  color: var(--color-accent);
+}
+
+/* -----------------------------------------------------------
+   VERTICAL SOCIAL RAIL
+----------------------------------------------------------- */
+.contact-social-rail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-lg);
+  height: 100%;
+  justify-content: center;
+}
+
+.contact-social-rail__line {
+  width: 1px;
+  flex: 1;
+  min-height: 40px;
+  background: var(--color-border);
+}
+
+.contact-social-rail__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.contact-social-rail__icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-white);
+  font-size: 1.1rem;
+  transition: transform 420ms var(--ease-spring),
+              box-shadow var(--duration-base) var(--ease-standard);
+}
+
+.contact-social-rail__icon:hover {
+  transform: scale(1.15) translateY(-3px);
+  box-shadow: 0 12px 24px -10px rgba(18, 18, 26, 0.4);
+}
+
+.contact-social-rail__icon:active {
+  transform: scale(0.9);
+  transition-duration: 100ms;
+}
+
+.contact-social-rail__icon--twitter {
+  background: #1DA1F2;
+}
+
+.contact-social-rail__icon--facebook {
+  background: var(--color-primary);
+}
+
+.contact-social-rail__icon--instagram {
+  background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+}
+
+/* -----------------------------------------------------------
+   MAP
+   Grayscale by default, full color on hover — a common "comes
+   alive" touch for embedded maps, consistent with the photo
+   tint/zoom treatments used elsewhere on the site.
+----------------------------------------------------------- */
+.contact-map {
+  line-height: 0;
+  filter: grayscale(65%);
+  transition: filter var(--duration-base) var(--ease-standard);
+}
+
+.contact-map:hover {
+  filter: grayscale(0%);
+}
+
+.contact-map__frame {
+  display: block;
+  width: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contact-map {
+    transition: none;
+  }
+}
+
+/* -----------------------------------------------------------
+   GALLERY
+   Bento-style grid — a couple of larger tiles mixed with
+   standard ones, rather than a flat uniform grid. Filtering
+   just toggles display; the reflow itself isn't animated
+   (masonry/grid reflow can't be smoothly tweened without a JS
+   layout library), but each newly-shown tile fades in.
+----------------------------------------------------------- */
+.gallery-section {
+  padding-block: var(--space-2xl);
+}
+
+.gallery-filters {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-xl);
+}
+
+.gallery-filter {
+  padding: 0.6rem 1.3rem;
+  border-radius: 999px;
+  border: 1.5px solid var(--color-border);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-ink-soft);
+  transition: background var(--duration-fast) var(--ease-standard),
+              color var(--duration-fast) var(--ease-standard),
+              border-color var(--duration-fast) var(--ease-standard),
+              transform var(--duration-fast) var(--ease-standard);
+}
+
+.gallery-filter:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.gallery-filter.is-active {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: var(--color-white);
+}
+
+.gallery-filter:active {
+  transform: scale(0.95);
+  transition-duration: 100ms;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 180px;
+  gap: var(--space-md);
+}
+
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: none;
+  background: none;
+  font: inherit;
+  text-align: inherit;
+}
+
+.gallery-item--large {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+.gallery-item--wide {
+  grid-column: span 2;
+}
+
+.gallery-item--tall {
+  grid-row: span 2;
+}
+
+.gallery-item.is-hidden {
+  display: none;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 700ms var(--ease-standard);
+}
+
+.gallery-item:hover img {
+  transform: scale(1.08);
+}
+
+.gallery-item:active {
+  transform: scale(0.97);
+  transition: transform 100ms var(--ease-standard);
+}
+
+.gallery-item__overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  background: rgba(18, 18, 26, 0);
+  color: var(--color-white);
+  opacity: 0;
+  transition: background var(--duration-base) var(--ease-standard),
+              opacity var(--duration-base) var(--ease-standard);
+}
+
+.gallery-item:hover .gallery-item__overlay {
+  background: rgba(18, 18, 26, 0.55);
+  opacity: 1;
+}
+
+.gallery-item__overlay iconify-icon {
+  font-size: 1.75rem;
+  transform: scale(0.8);
+  transition: transform 420ms var(--ease-spring);
+}
+
+.gallery-item:hover .gallery-item__overlay iconify-icon {
+  transform: scale(1);
+}
+
+.gallery-item__caption {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--text-sm);
+}
+
+/* -----------------------------------------------------------
+   LIGHTBOX
+   Same accessible-overlay pattern as the mobile nav panel:
+   focus handling, ESC to close, click-outside to close.
+----------------------------------------------------------- */
+.lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(11, 11, 15, 0.92);
+  z-index: 60;
+  opacity: 0;
+  transition: opacity var(--duration-base) var(--ease-standard);
+}
+
+.lightbox-overlay.is-visible {
+  opacity: 1;
+}
+
+.lightbox-overlay[hidden] {
+  display: none;
+}
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 61;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-xl);
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0.96);
+  transition: opacity var(--duration-base) var(--ease-standard),
+              transform var(--duration-base) var(--ease-standard),
+              visibility 0s linear var(--duration-base);
+  pointer-events: none;
+}
+
+.lightbox.is-open {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+  transition: opacity var(--duration-base) var(--ease-standard),
+              transform var(--duration-base) var(--ease-standard),
+              visibility 0s linear;
+  pointer-events: auto;
+}
+
+.lightbox__figure {
+  max-width: min(90vw, 1000px);
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.lightbox__image {
+  max-width: 100%;
+  max-height: 75vh;
+  border-radius: var(--radius-md);
+  object-fit: contain;
+}
+
+.lightbox__caption {
+  color: var(--color-white);
+  font-family: var(--font-display);
+  font-weight: 700;
+  margin-top: var(--space-md);
+}
+
+.lightbox__close {
+  position: absolute;
+  top: var(--space-lg);
+  right: var(--space-lg);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--color-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  transition: background var(--duration-fast) var(--ease-standard),
+              transform var(--duration-fast) var(--ease-standard);
+}
+
+.lightbox__close:hover {
+  background: rgba(255, 255, 255, 0.22);
+  transform: rotate(90deg);
+}
+
+.lightbox__nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--color-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  transition: background var(--duration-fast) var(--ease-standard),
+              transform var(--duration-fast) var(--ease-standard);
+}
+
+.lightbox__nav:hover {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.lightbox__nav:active {
+  transform: translateY(-50%) scale(0.9);
+  transition-duration: 100ms;
+}
+
+.lightbox__nav--prev {
+  left: var(--space-lg);
+}
+
+.lightbox__nav--next {
+  right: var(--space-lg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lightbox,
+  .lightbox-overlay {
+    transition: opacity var(--duration-fast) linear, visibility 0s;
+    transform: none;
+  }
+
+  .lightbox.is-open {
+    transform: none;
+  }
+}
