@@ -9,7 +9,7 @@
 (function () {
   'use strict';
 
-  const API_BASE_URL = 'http://localhost:4000';
+  const API_BASE_URL = 'https://skybridge-logistics-backend.onrender.com';
   const PAGE_SIZE = 8;
 
   const STATUS_LABELS = {
@@ -129,8 +129,6 @@
     });
   }
 
-  // Debounced — avoids firing a network request on every single
-  // keystroke while typing in the search box.
   let searchTimeout = null;
   searchInput.addEventListener('input', () => {
     clearTimeout(searchTimeout);
@@ -156,8 +154,6 @@
     currentPage += 1;
     fetchShipments();
   });
-
-  // --- Delete confirm modal ---
 
   const modalOverlay = document.getElementById('delete-modal-overlay');
   const modal = document.getElementById('delete-modal');
