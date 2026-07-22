@@ -7,7 +7,7 @@
 (function () {
   'use strict';
 
-  const API_BASE_URL = 'http://localhost:4000';
+  const API_BASE_URL = 'https://skybridge-logistics-backend.onrender.com';
 
   const form = document.getElementById('tracking-form');
   const input = document.getElementById('tracking-code-input');
@@ -25,15 +25,6 @@
     delivered: 'Delivered',
   };
 
-  /**
-   * Calls the real public tracking endpoint. Returns:
-   *   - the shipment object on success
-   *   - null if no shipment exists with that code (404)
-   *   - throws for anything else (network failure, server error),
-   *     which the submit handler below catches separately so a
-   *     "couldn't reach the server" message doesn't get shown as
-   *     if it were just a wrong tracking code.
-   */
   async function findShipment(code) {
     const normalized = code.trim().toUpperCase();
 
@@ -137,18 +128,10 @@
     revealResults();
   }
 
-  /**
-   * Un-hides the results container and triggers its entrance
-   * animation, then scrolls it into view. The reveal-up items
-   * inside (timeline entries) are picked up by the same
-   * IntersectionObserver in animations.js — since the container
-   * was just un-hidden and is already in view, they animate in
-   * immediately rather than waiting for scroll.
-   */
   function revealResults() {
     resultsEl.hidden = false;
     resultsEl.classList.remove('is-visible');
-    void resultsEl.offsetWidth; // force reflow so the transition replays each search
+    void resultsEl.offsetWidth;
     resultsEl.classList.add('is-visible');
 
     resultsEl.scrollIntoView({
@@ -156,8 +139,6 @@
       block: 'start',
     });
 
-    // Re-run the scroll-reveal observer for the new timeline items,
-    // since they didn't exist in the DOM when animations.js first ran.
     if (window.reinitScrollReveal) {
       window.reinitScrollReveal();
     }
