@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Settings | SkyBridge Logistics Admin</title>
+  <meta name="robots" content="noindex, nofollow" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="css/admin.css" />
+
+  <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js" defer></script>
+</head>
+<body class="admin-body">
+
+  <div class="admin-shell">
+
+    <div class="admin-sidebar-overlay" id="admin-sidebar-overlay" hidden></div>
+
+    <!-- ===================== SIDEBAR ===================== -->
+    <aside class="admin-sidebar" id="admin-sidebar">
+      <div class="admin-sidebar__brand">
+        <img src="../assets/css/images/WhatsApp Image 2026-07-19 at 08.20.53.jpeg" alt="SkyBridge Logistics" class="admin-sidebar__logo" />
+        <button type="button" class="admin-sidebar__close" id="admin-sidebar-close" aria-label="Close menu">
+          <iconify-icon icon="ph:x-bold" aria-hidden="true"></iconify-icon>
+        </button>
+      </div>
+
+      <nav class="admin-nav" aria-label="Admin">
+        <a href="dashboard.html" class="admin-nav__link">
+          <iconify-icon icon="ph:squares-four-bold" aria-hidden="true"></iconify-icon>
+          Dashboard
+        </a>
+        <a href="shipment-form.html" class="admin-nav__link">
+          <iconify-icon icon="ph:plus-circle-bold" aria-hidden="true"></iconify-icon>
+          Create Shipment
+        </a>
+        <a href="shipments.html" class="admin-nav__link">
+          <iconify-icon icon="ph:package-bold" aria-hidden="true"></iconify-icon>
+          All Shipments
+        </a>
+        <a href="settings.html" class="admin-nav__link is-active">
+          <iconify-icon icon="ph:gear-six-bold" aria-hidden="true"></iconify-icon>
+          Settings
+        </a>
+      </nav>
+
+      <button type="button" class="admin-nav__link admin-nav__logout" id="admin-logout">
+        <iconify-icon icon="ph:sign-out-bold" aria-hidden="true"></iconify-icon>
+        Logout
+      </button>
+    </aside>
+
+    <!-- ===================== MAIN ===================== -->
+    <div class="admin-main">
+
+      <!-- Topbar -->
+      <header class="admin-topbar">
+        <div class="admin-topbar__left">
+          <button type="button" class="admin-topbar__menu-toggle" id="admin-menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="admin-sidebar">
+            <iconify-icon icon="ph:list-bold" aria-hidden="true"></iconify-icon>
+          </button>
+          <div>
+            <p class="admin-topbar__eyebrow">Account</p>
+            <h1 class="admin-topbar__title">Settings</h1>
+          </div>
+        </div>
+
+        <div class="admin-topbar__actions">
+          <div class="admin-topbar__user">
+            <span class="admin-topbar__avatar">A</span>
+          </div>
+        </div>
+      </header>
+
+      <main class="admin-content admin-content--settings">
+
+        <!-- Profile -->
+        <div class="admin-panel">
+          <div class="admin-panel__header">
+            <div class="admin-panel__heading-group">
+              <iconify-icon icon="ph:user-circle-bold" aria-hidden="true"></iconify-icon>
+              <h2 class="admin-panel__title">Profile Information</h2>
+            </div>
+          </div>
+
+          <form id="profile-form" class="admin-form" novalidate>
+            <div class="admin-form__grid">
+              <div class="admin-field">
+                <label for="profile-name">Full Name</label>
+                <input type="text" id="profile-name" name="fullName" value="Admin User" required />
+              </div>
+              <div class="admin-field">
+                <label for="profile-phone">Phone Number</label>
+                <input type="tel" id="profile-phone" name="phone" value="+1 (606) 422-7903" required />
+              </div>
+              <div class="admin-field admin-field--full">
+                <label for="profile-email">Email Address</label>
+                <input type="email" id="profile-email" name="email" value="admin@skybridgelogistics.com" required />
+              </div>
+            </div>
+
+            <div class="admin-form__actions">
+              <button type="submit" class="admin-btn admin-btn--primary">
+                <iconify-icon icon="ph:check-bold" aria-hidden="true"></iconify-icon>
+                Save Profile
+              </button>
+              <p class="admin-form__status" id="profile-status" role="status" aria-live="polite"></p>
+            </div>
+          </form>
+        </div>
+
+        <!-- Password -->
+        <div class="admin-panel">
+          <div class="admin-panel__header">
+            <div class="admin-panel__heading-group">
+              <iconify-icon icon="ph:lock-key-bold" aria-hidden="true"></iconify-icon>
+              <h2 class="admin-panel__title">Change Password</h2>
+            </div>
+          </div>
+
+          <form id="password-form" class="admin-form" novalidate>
+            <div class="admin-form__grid">
+              <div class="admin-field admin-field--full">
+                <label for="current-password">Current Password</label>
+                <div class="admin-field__control">
+                  <input type="password" id="current-password" name="currentPassword" required autocomplete="current-password" />
+                  <button type="button" class="admin-field__toggle" data-password-toggle="current-password" aria-label="Show password">
+                    <iconify-icon icon="ph:eye-bold" aria-hidden="true"></iconify-icon>
+                  </button>
+                </div>
+              </div>
+
+              <div class="admin-field">
+                <label for="new-password">New Password</label>
+                <div class="admin-field__control">
+                  <input type="password" id="new-password" name="newPassword" required autocomplete="new-password" minlength="8" />
+                  <button type="button" class="admin-field__toggle" data-password-toggle="new-password" aria-label="Show password">
+                    <iconify-icon icon="ph:eye-bold" aria-hidden="true"></iconify-icon>
+                  </button>
+                </div>
+              </div>
+
+              <div class="admin-field">
+                <label for="confirm-password">Confirm New Password</label>
+                <div class="admin-field__control">
+                  <input type="password" id="confirm-password" name="confirmPassword" required autocomplete="new-password" minlength="8" />
+                  <button type="button" class="admin-field__toggle" data-password-toggle="confirm-password" aria-label="Show password">
+                    <iconify-icon icon="ph:eye-bold" aria-hidden="true"></iconify-icon>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="admin-form__actions">
+              <button type="submit" class="admin-btn admin-btn--primary">
+                <iconify-icon icon="ph:check-bold" aria-hidden="true"></iconify-icon>
+                Update Password
+              </button>
+              <p class="admin-form__status" id="password-status" role="status" aria-live="polite"></p>
+            </div>
+          </form>
+        </div>
+
+        <!-- Notifications -->
+        <div class="admin-panel">
+          <div class="admin-panel__header">
+            <div class="admin-panel__heading-group">
+              <iconify-icon icon="ph:bell-bold" aria-hidden="true"></iconify-icon>
+              <h2 class="admin-panel__title">Notification Preferences</h2>
+            </div>
+          </div>
+
+          <div class="admin-form">
+            <div class="admin-toggle-list">
+              <div class="admin-toggle-row">
+                <div>
+                  <span class="admin-toggle-row__label">New shipment created</span>
+                  <span class="admin-toggle-row__hint">Get an email whenever a new shipment is added.</span>
+                </div>
+                <label class="admin-toggle">
+                  <input type="checkbox" checked data-pref="new-shipment" />
+                  <span class="admin-toggle__track" aria-hidden="true"></span>
+                </label>
+              </div>
+
+              <div class="admin-toggle-row">
+                <div>
+                  <span class="admin-toggle-row__label">Shipment status changes</span>
+                  <span class="admin-toggle-row__hint">Get an email whenever a shipment's status is updated.</span>
+                </div>
+                <label class="admin-toggle">
+                  <input type="checkbox" checked data-pref="status-change" />
+                  <span class="admin-toggle__track" aria-hidden="true"></span>
+                </label>
+              </div>
+
+              <div class="admin-toggle-row">
+                <div>
+                  <span class="admin-toggle-row__label">Delivery delays</span>
+                  <span class="admin-toggle-row__hint">Get notified if a shipment passes its estimated delivery date.</span>
+                </div>
+                <label class="admin-toggle">
+                  <input type="checkbox" data-pref="delays" />
+                  <span class="admin-toggle__track" aria-hidden="true"></span>
+                </label>
+              </div>
+            </div>
+
+            <div class="admin-form__actions">
+              <button type="button" class="admin-btn admin-btn--primary" id="save-preferences-btn">
+                <iconify-icon icon="ph:check-bold" aria-hidden="true"></iconify-icon>
+                Save Preferences
+              </button>
+              <p class="admin-form__status" id="preferences-status" role="status" aria-live="polite"></p>
+            </div>
+          </div>
+        </div>
+
+      </main>
+    </div>
+  </div>
+
+  <script src="js/admin-nav.js" defer></script>
+  <script src="js/auth-guard.js" defer></script>
+  <script src="js/settings.js" defer></script>
+</body>
+</html>

@@ -2957,6 +2957,13 @@ select:focus-visible {
   color: var(--color-ink-soft);
 }
 
+.tracking-timeline__note {
+  font-size: var(--text-sm);
+  color: var(--color-ink-soft);
+  font-style: italic;
+  margin-top: 0.2rem;
+}
+
 /* -----------------------------------------------------------
    TRACKING — NOT FOUND
    Neutral/amber tone rather than alarming red — this is a

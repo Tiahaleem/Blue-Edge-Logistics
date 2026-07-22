@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title id="page-title">Create Shipment | SkyBridge Logistics Admin</title>
+  <meta name="robots" content="noindex, nofollow" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="css/admin.css" />
+
+  <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js" defer></script>
+</head>
+<body class="admin-body">
+
+  <div class="admin-shell">
+
+    <div class="admin-sidebar-overlay" id="admin-sidebar-overlay" hidden></div>
+
+    <!-- ===================== SIDEBAR ===================== -->
+    <aside class="admin-sidebar" id="admin-sidebar">
+      <div class="admin-sidebar__brand">
+        <img src="../assets/css/images/WhatsApp Image 2026-07-19 at 08.20.53.jpeg" alt="SkyBridge Logistics" class="admin-sidebar__logo" />
+        <button type="button" class="admin-sidebar__close" id="admin-sidebar-close" aria-label="Close menu">
+          <iconify-icon icon="ph:x-bold" aria-hidden="true"></iconify-icon>
+        </button>
+      </div>
+
+      <nav class="admin-nav" aria-label="Admin">
+        <a href="dashboard.html" class="admin-nav__link">
+          <iconify-icon icon="ph:squares-four-bold" aria-hidden="true"></iconify-icon>
+          Dashboard
+        </a>
+        <a href="shipment-form.html" class="admin-nav__link is-active" id="create-shipment-nav-link">
+          <iconify-icon icon="ph:plus-circle-bold" aria-hidden="true"></iconify-icon>
+          Create Shipment
+        </a>
+        <a href="shipments.html" class="admin-nav__link">
+          <iconify-icon icon="ph:package-bold" aria-hidden="true"></iconify-icon>
+          All Shipments
+        </a>
+        <a href="settings.html" class="admin-nav__link">
+          <iconify-icon icon="ph:gear-six-bold" aria-hidden="true"></iconify-icon>
+          Settings
+        </a>
+      </nav>
+
+      <button type="button" class="admin-nav__link admin-nav__logout" id="admin-logout">
+        <iconify-icon icon="ph:sign-out-bold" aria-hidden="true"></iconify-icon>
+        Logout
+      </button>
+    </aside>
+
+    <!-- ===================== MAIN ===================== -->
+    <div class="admin-main">
+
+      <!-- Topbar -->
+      <header class="admin-topbar">
+        <div class="admin-topbar__left">
+          <button type="button" class="admin-topbar__menu-toggle" id="admin-menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="admin-sidebar">
+            <iconify-icon icon="ph:list-bold" aria-hidden="true"></iconify-icon>
+          </button>
+          <div>
+            <p class="admin-topbar__eyebrow" id="form-eyebrow">New Shipment</p>
+            <h1 class="admin-topbar__title" id="form-heading">Create Shipment</h1>
+          </div>
+        </div>
+
+        <div class="admin-topbar__actions">
+          <a href="shipments.html" class="admin-btn admin-btn--ghost">
+            <iconify-icon icon="ph:arrow-left-bold" aria-hidden="true"></iconify-icon>
+            Back to Shipments
+          </a>
+          <div class="admin-topbar__user">
+            <span class="admin-topbar__avatar">A</span>
+          </div>
+        </div>
+      </header>
+
+      <main class="admin-content">
+
+        <!-- Tracking code -->
+        <div class="admin-panel admin-panel--tracking-code">
+          <div class="admin-tracking-code">
+            <div class="admin-tracking-code__info">
+              <iconify-icon icon="ph:hash-bold" aria-hidden="true"></iconify-icon>
+              <div>
+                <span class="admin-tracking-code__label">Tracking Number</span>
+                <span class="admin-tracking-code__value" id="tracking-code-display">Not yet generated</span>
+              </div>
+            </div>
+            <button type="button" class="admin-btn admin-btn--primary" id="generate-code-btn">
+              <iconify-icon icon="ph:arrows-clockwise-bold" aria-hidden="true"></iconify-icon>
+              Generate Tracking Code
+            </button>
+          </div>
+        </div>
+
+        <!-- Shipment form -->
+        <div class="admin-panel">
+          <div class="admin-panel__header">
+            <h2 class="admin-panel__title">Shipment Details</h2>
+          </div>
+
+          <form id="shipment-form" class="admin-form" novalidate>
+
+            <div class="admin-form__grid">
+              <div class="admin-field">
+                <label for="customer-name">Customer Name</label>
+                <input type="text" id="customer-name" name="customerName" required />
+              </div>
+              <div class="admin-field">
+                <label for="customer-phone">Phone Number</label>
+                <input type="tel" id="customer-phone" name="phone" required />
+              </div>
+
+              <div class="admin-field">
+                <label for="customer-email">Email</label>
+                <input type="email" id="customer-email" name="email" required />
+              </div>
+              <div class="admin-field">
+                <label for="weight">Weight (kg)</label>
+                <input type="number" id="weight" name="weight" min="0" step="0.1" required />
+              </div>
+
+              <div class="admin-field">
+                <label for="origin">Origin</label>
+                <input type="text" id="origin" name="origin" required />
+              </div>
+              <div class="admin-field">
+                <label for="destination">Destination</label>
+                <input type="text" id="destination" name="destination" required />
+              </div>
+
+              <div class="admin-field">
+                <label for="estimated-delivery">Estimated Delivery</label>
+                <input type="date" id="estimated-delivery" name="estimatedDelivery" required />
+              </div>
+              <div class="admin-field">
+                <label for="current-status">Current Status</label>
+                <select id="current-status" name="status" required>
+                  <option value="pending">Processing</option>
+                  <option value="in-transit">In Transit</option>
+                  <option value="delivered">Delivered</option>
+                </select>
+              </div>
+
+              <div class="admin-field admin-field--full">
+                <label for="current-location">Current Location</label>
+                <input type="text" id="current-location" name="currentLocation" required />
+              </div>
+
+              <div class="admin-field admin-field--full">
+                <label for="description">Shipment Description</label>
+                <textarea id="description" name="description" rows="2" required></textarea>
+              </div>
+
+              <div class="admin-field admin-field--full">
+                <label for="update-notes">
+                  Notes
+                  <span class="admin-field__hint" id="notes-hint">(optional)</span>
+                </label>
+                <textarea id="update-notes" name="notes" rows="2" placeholder="e.g. Departed origin warehouse, slight delay due to weather"></textarea>
+              </div>
+            </div>
+
+            <div class="admin-form__actions">
+              <button type="submit" class="admin-btn admin-btn--primary" id="submit-btn">
+                <iconify-icon icon="ph:check-bold" aria-hidden="true"></iconify-icon>
+                Create Shipment
+              </button>
+              <p class="admin-form__status" id="form-status" role="status" aria-live="polite"></p>
+            </div>
+          </form>
+        </div>
+
+        <!-- Tracking history — only shown in Edit mode -->
+        <div class="admin-panel" id="tracking-history-panel" hidden>
+          <div class="admin-panel__header">
+            <h2 class="admin-panel__title">Tracking History</h2>
+          </div>
+          <div class="admin-history">
+            <ul class="admin-history__list" id="tracking-history-list"></ul>
+          </div>
+        </div>
+
+      </main>
+    </div>
+  </div>
+
+  <script src="js/admin-nav.js" defer></script>
+  <script src="js/auth-guard.js" defer></script>
+  <script src="js/shipment-form.js" defer></script>
+</body>
+</html>

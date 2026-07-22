@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>All Shipments | SkyBridge Logistics Admin</title>
+  <meta name="robots" content="noindex, nofollow" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="css/admin.css" />
+
+  <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js" defer></script>
+</head>
+<body class="admin-body">
+
+  <div class="admin-shell">
+
+    <div class="admin-sidebar-overlay" id="admin-sidebar-overlay" hidden></div>
+
+    <!-- ===================== SIDEBAR ===================== -->
+    <aside class="admin-sidebar" id="admin-sidebar">
+      <div class="admin-sidebar__brand">
+        <img src="../assets/css/images/WhatsApp Image 2026-07-19 at 08.20.53.jpeg" alt="SkyBridge Logistics" class="admin-sidebar__logo" />
+        <button type="button" class="admin-sidebar__close" id="admin-sidebar-close" aria-label="Close menu">
+          <iconify-icon icon="ph:x-bold" aria-hidden="true"></iconify-icon>
+        </button>
+      </div>
+
+      <nav class="admin-nav" aria-label="Admin">
+        <a href="dashboard.html" class="admin-nav__link">
+          <iconify-icon icon="ph:squares-four-bold" aria-hidden="true"></iconify-icon>
+          Dashboard
+        </a>
+        <a href="shipment-form.html" class="admin-nav__link">
+          <iconify-icon icon="ph:plus-circle-bold" aria-hidden="true"></iconify-icon>
+          Create Shipment
+        </a>
+        <a href="shipments.html" class="admin-nav__link is-active">
+          <iconify-icon icon="ph:package-bold" aria-hidden="true"></iconify-icon>
+          All Shipments
+        </a>
+        <a href="settings.html" class="admin-nav__link">
+          <iconify-icon icon="ph:gear-six-bold" aria-hidden="true"></iconify-icon>
+          Settings
+        </a>
+      </nav>
+
+      <button type="button" class="admin-nav__link admin-nav__logout" id="admin-logout">
+        <iconify-icon icon="ph:sign-out-bold" aria-hidden="true"></iconify-icon>
+        Logout
+      </button>
+    </aside>
+
+    <!-- ===================== MAIN ===================== -->
+    <div class="admin-main">
+
+      <!-- Topbar -->
+      <header class="admin-topbar">
+        <div class="admin-topbar__left">
+          <button type="button" class="admin-topbar__menu-toggle" id="admin-menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="admin-sidebar">
+            <iconify-icon icon="ph:list-bold" aria-hidden="true"></iconify-icon>
+          </button>
+          <div>
+            <p class="admin-topbar__eyebrow">Shipments</p>
+            <h1 class="admin-topbar__title">All Shipments</h1>
+          </div>
+        </div>
+
+        <div class="admin-topbar__actions">
+          <a href="shipment-form.html" class="admin-btn admin-btn--primary">
+            <iconify-icon icon="ph:plus-bold" aria-hidden="true"></iconify-icon>
+            Create Shipment
+          </a>
+          <div class="admin-topbar__user">
+            <span class="admin-topbar__avatar">A</span>
+          </div>
+        </div>
+      </header>
+
+      <main class="admin-content">
+
+        <div class="admin-panel">
+
+          <!-- Search + filter -->
+          <div class="admin-toolbar">
+            <div class="admin-search">
+              <iconify-icon icon="ph:magnifying-glass-bold" aria-hidden="true"></iconify-icon>
+              <input type="text" id="shipment-search" placeholder="Search by tracking number or customer name" aria-label="Search shipments" />
+            </div>
+
+            <div class="admin-select">
+              <iconify-icon icon="ph:funnel-bold" aria-hidden="true"></iconify-icon>
+              <select id="shipment-status-filter" aria-label="Filter by status">
+                <option value="all">All Statuses</option>
+                <option value="in-transit">In Transit</option>
+                <option value="delivered">Delivered</option>
+                <option value="pending">Pending</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="admin-table-wrap">
+            <table class="admin-table" id="shipments-table">
+              <thead>
+                <tr>
+                  <th>Tracking Number</th>
+                  <th>Customer</th>
+                  <th>Origin</th>
+                  <th>Destination</th>
+                  <th>Status</th>
+                  <th>Est. Delivery</th>
+                  <th class="admin-table__actions-col">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Populated by js/shipments.js from demo data,
+                     shaped like the future GET /api/shipments response. -->
+              </tbody>
+            </table>
+          </div>
+
+          <div class="admin-empty-state" id="shipments-empty" hidden>
+            <iconify-icon icon="ph:package-bold" aria-hidden="true"></iconify-icon>
+            <p>No shipments match your search or filter.</p>
+          </div>
+
+          <div class="admin-pagination" id="shipments-pagination">
+            <span class="admin-pagination__info" id="shipments-pagination-info"></span>
+            <div class="admin-pagination__controls">
+              <button type="button" class="admin-pagination__btn" id="shipments-prev" aria-label="Previous page">
+                <iconify-icon icon="ph:caret-left-bold" aria-hidden="true"></iconify-icon>
+              </button>
+              <span class="admin-pagination__pages" id="shipments-page-indicator"></span>
+              <button type="button" class="admin-pagination__btn" id="shipments-next" aria-label="Next page">
+                <iconify-icon icon="ph:caret-right-bold" aria-hidden="true"></iconify-icon>
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- ===================== DELETE CONFIRM MODAL ===================== -->
+  <!-- Custom-built, not window.confirm() — consistent with the
+       rest of the project's "no native browser popups" rule. -->
+  <div class="admin-modal-overlay" id="delete-modal-overlay" hidden></div>
+  <div class="admin-modal" id="delete-modal" role="alertdialog" aria-modal="true" aria-labelledby="delete-modal-title" aria-hidden="true">
+    <div class="admin-modal__icon">
+      <iconify-icon icon="ph:warning-bold" aria-hidden="true"></iconify-icon>
+    </div>
+    <h2 class="admin-modal__title" id="delete-modal-title">Delete this shipment?</h2>
+    <p class="admin-modal__text" id="delete-modal-text">
+      This will permanently remove <strong id="delete-modal-code"></strong> from the system. This cannot be undone.
+    </p>
+    <p class="admin-modal__error" id="delete-modal-error" role="alert"></p>
+    <div class="admin-modal__actions">
+      <button type="button" class="admin-btn admin-btn--ghost" id="delete-modal-cancel">Cancel</button>
+      <button type="button" class="admin-btn admin-btn--danger" id="delete-modal-confirm">Delete Shipment</button>
+    </div>
+  </div>
+
+  <script src="js/admin-nav.js" defer></script>
+  <script src="js/auth-guard.js" defer></script>
+  <script src="js/shipments.js" defer></script>
+</body>
+</html>

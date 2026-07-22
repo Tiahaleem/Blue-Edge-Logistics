@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Login | SkyBridge Logistics</title>
+  <meta name="description" content="Admin login for the SkyBridge Logistics management dashboard." />
+  <meta name="robots" content="noindex, nofollow" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet" />
+
+  <!-- Reuses the public site's design tokens (colors, type scale,
+       spacing) from style.css, plus admin-specific layout rules
+       in its own stylesheet — keeps the brand consistent without
+       duplicating the whole design system. -->
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="css/admin.css" />
+
+  <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js" defer></script>
+</head>
+<body class="admin-auth-body">
+
+  <div class="admin-auth">
+
+    <!-- Brand panel — reuses the same network-graphic motif from
+         the public site's page banners, so the admin area still
+         feels like part of the same product, not a bolted-on tool. -->
+    <div class="admin-auth__brand">
+      <svg class="admin-auth__network" viewBox="0 0 700 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="350" cy="450" r="320" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="1.5"/>
+        <circle cx="350" cy="450" r="220" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+        <circle cx="350" cy="450" r="120" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+        <ellipse cx="350" cy="450" rx="320" ry="90" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+        <ellipse cx="350" cy="450" rx="320" ry="200" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+        <circle cx="180" cy="260" r="2" fill="rgba(255,255,255,0.4)"/>
+        <circle cx="520" cy="310" r="1.6" fill="rgba(255,255,255,0.35)"/>
+        <circle cx="410" cy="180" r="1.8" fill="rgba(255,255,255,0.45)"/>
+        <circle cx="240" cy="600" r="2.2" fill="rgba(255,255,255,0.5)"/>
+        <circle cx="480" cy="640" r="1.5" fill="rgba(255,255,255,0.3)"/>
+        <circle cx="560" cy="500" r="1.7" fill="rgba(255,255,255,0.4)"/>
+        <circle cx="150" cy="480" r="1.9" fill="rgba(255,255,255,0.42)"/>
+        <line x1="180" y1="260" x2="410" y2="180" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+        <line x1="410" y1="180" x2="520" y2="310" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+        <line x1="150" y1="480" x2="240" y2="600" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+        <line x1="480" y1="640" x2="560" y2="500" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+      </svg>
+
+      <div class="admin-auth__brand-content">
+        <img src="../assets/css/images/WhatsApp Image 2026-07-19 at 08.20.53.jpeg" alt="SkyBridge Logistics" class="admin-auth__logo" />
+        <h1 class="admin-auth__tagline">Manage every shipment, one dashboard.</h1>
+        <p class="admin-auth__text">
+          Create and track shipments, update delivery status, and keep
+          your customers informed &mdash; all from one place.
+        </p>
+      </div>
+    </div>
+
+    <!-- Form panel -->
+    <div class="admin-auth__form-panel">
+      <div class="admin-auth__form-wrap">
+
+        <p class="eyebrow">Admin Access</p>
+        <h2 class="admin-auth__heading">Welcome Back</h2>
+        <p class="admin-auth__subtext">Sign in to manage shipments and customer deliveries.</p>
+
+        <form id="admin-login-form" novalidate>
+          <div class="admin-field">
+            <label for="admin-email">Email Address</label>
+            <div class="admin-field__control">
+              <iconify-icon icon="ph:envelope-simple-bold" aria-hidden="true"></iconify-icon>
+              <input type="email" id="admin-email" name="email" placeholder="you@skybridgelogistics.com" required autocomplete="username" />
+            </div>
+          </div>
+
+          <div class="admin-field">
+            <label for="admin-password">Password</label>
+            <div class="admin-field__control">
+              <iconify-icon icon="ph:lock-key-bold" aria-hidden="true"></iconify-icon>
+              <input type="password" id="admin-password" name="password" placeholder="Enter your password" required autocomplete="current-password" />
+              <button type="button" class="admin-field__toggle" id="admin-password-toggle" aria-label="Show password">
+                <iconify-icon icon="ph:eye-bold" aria-hidden="true"></iconify-icon>
+              </button>
+            </div>
+          </div>
+
+          <div class="admin-auth__row">
+            <label class="admin-checkbox">
+              <input type="checkbox" id="admin-remember" name="remember" />
+              <span class="admin-checkbox__box" aria-hidden="true">
+                <iconify-icon icon="ph:check-bold"></iconify-icon>
+              </span>
+              Remember me
+            </label>
+            <a href="#" class="admin-auth__forgot">Forgot password?</a>
+          </div>
+
+          <button type="submit" class="admin-auth__submit">
+            Log In
+            <iconify-icon icon="ph:arrow-right-bold" aria-hidden="true"></iconify-icon>
+          </button>
+
+          <p class="admin-auth__status" id="admin-login-status" role="status" aria-live="polite"></p>
+        </form>
+
+        <a href="../index.html" class="admin-auth__back">
+          <iconify-icon icon="ph:arrow-left-bold" aria-hidden="true"></iconify-icon>
+          Back to website
+        </a>
+
+      </div>
+    </div>
+
+  </div>
+<!-- <script src="js/auth-guard.js" defer></script> -->
+  <script src="js/auth.js" defer></script>
+</body>
+</html>
