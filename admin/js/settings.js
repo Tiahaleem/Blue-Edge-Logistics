@@ -7,19 +7,13 @@
 (function () {
   'use strict';
 
-  const API_BASE_URL = 'http://localhost:4000';
+  const API_BASE_URL = 'https://skybridge-logistics-backend.onrender.com';
 
-  // Backend uses camelCase keys (newShipment, statusChange,
-  // delays); the HTML's data-pref attributes use kebab-case
-  // (new-shipment, status-change) since that matches normal HTML
-  // attribute conventions. This maps between the two.
   const PREF_KEY_MAP = {
     'new-shipment': 'newShipment',
     'status-change': 'statusChange',
     delays: 'delays',
   };
-
-  // --- Password show/hide toggles (multiple fields on this page) ---
 
   document.querySelectorAll('[data-password-toggle]').forEach((toggleBtn) => {
     const targetId = toggleBtn.dataset.passwordToggle;
@@ -38,8 +32,6 @@
     el.textContent = message;
     el.classList.toggle('admin-form__status--error', isError);
   }
-
-  // --- Load current profile + preferences on page load ---
 
   async function loadProfile() {
     try {
@@ -68,12 +60,9 @@
         }
       });
     } catch (err) {
-      // Non-fatal — the form just keeps its default placeholder
-      // values if this fails; the user can still try saving.
+      // Non-fatal
     }
   }
-
-  // --- Profile form ---
 
   const profileForm = document.getElementById('profile-form');
   const profileStatus = document.getElementById('profile-status');
@@ -120,8 +109,6 @@
     });
   }
 
-  // --- Password form ---
-
   const passwordForm = document.getElementById('password-form');
   const passwordStatus = document.getElementById('password-status');
 
@@ -159,11 +146,6 @@
         const data = await res.json();
 
         if (!res.ok) {
-          // A 401 here specifically means "current password was
-          // wrong" (the server checked it against the hash) —
-          // NOT "you're not logged in" (auth-guard already
-          // confirmed that on page load). So this one deliberately
-          // does NOT redirect on 401, unlike the other forms.
           showStatus(passwordStatus, data.error || 'Could not update password.', true);
           return;
         }
@@ -175,8 +157,6 @@
       }
     });
   }
-
-  // --- Notification preferences ---
 
   const savePreferencesBtn = document.getElementById('save-preferences-btn');
   const preferencesStatus = document.getElementById('preferences-status');
@@ -215,8 +195,6 @@
       }
     });
   }
-
-  // Logout is handled by the shared js/auth-guard.js.
 
   loadProfile();
 })();
