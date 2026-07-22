@@ -17,7 +17,7 @@
   // Change this once the backend is deployed somewhere real —
   // for local development it points at the Express server
   // running on your machine.
-  const API_BASE_URL = 'http://localhost:4000';
+  const API_BASE_URL = 'https://skybridge-logistics-backend.onrender.com';
 
   const passwordInput = document.getElementById('admin-password');
   const toggleBtn = document.getElementById('admin-password-toggle');
