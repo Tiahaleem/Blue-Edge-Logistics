@@ -4,7 +4,7 @@
   "description": "Backend API for the SkyBridge Logistics website — public tracking endpoint and admin shipment management, built on Express and Supabase (PostgreSQL).",
   "type": "module",
   "main": "src/server.js",
-"scripts": {
+  "scripts": {
     "dev": "node --watch src/server.js",
     "start": "node src/server.js",
     "create-admin": "node src/scripts/createAdmin.js"
@@ -12,6 +12,7 @@
   "dependencies": {
     "@supabase/supabase-js": "^2.45.4",
     "bcrypt": "^6.0.0",
+    "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.21.1",
