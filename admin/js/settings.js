@@ -7,7 +7,7 @@
 (function () {
   'use strict';
 
-  const API_BASE_URL = 'https://skybridge-logistics-backend.onrender.com';
+  const API_BASE_URL = '';
 
   const PREF_KEY_MAP = {
     'new-shipment': 'newShipment',
