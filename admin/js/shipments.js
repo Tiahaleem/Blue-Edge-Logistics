@@ -9,7 +9,7 @@
 (function () {
   'use strict';
 
-  const API_BASE_URL = 'https://skybridge-logistics-backend.onrender.com';
+  const API_BASE_URL = '';
   const PAGE_SIZE = 8;
 
   const STATUS_LABELS = {
@@ -48,7 +48,7 @@
     const query = searchInput.value.trim();
     const status = statusFilter.value;
 
-    const url = new URL(`${API_BASE_URL}/api/shipments`);
+    const url = new URL(`${API_BASE_URL}/api/shipments`, window.location.origin);
     if (query) url.searchParams.set('search', query);
     if (status !== 'all') url.searchParams.set('status', status);
     url.searchParams.set('page', String(currentPage));
