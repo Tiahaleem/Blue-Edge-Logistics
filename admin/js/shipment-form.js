@@ -11,7 +11,7 @@
 (function () {
   'use strict';
 
-  const API_BASE_URL = 'https://skybridge-logistics-backend.onrender.com';
+  const API_BASE_URL = '';
 
   const params = new URLSearchParams(window.location.search);
   const editId = params.get('id');
