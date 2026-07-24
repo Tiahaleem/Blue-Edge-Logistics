@@ -10,7 +10,7 @@
 (function () {
   'use strict';
 
-  const API_BASE_URL = 'https://skybridge-logistics-backend.onrender.com';
+  const API_BASE_URL = '';
 
   const prefersReducedMotion = window.matchMedia(
     '(prefers-reduced-motion: reduce)'
