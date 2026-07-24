@@ -7,7 +7,7 @@
 (function () {
   'use strict';
 
-  const API_BASE_URL = 'https://skybridge-logistics-backend.onrender.com';
+  const API_BASE_URL = '';
 
   const form = document.getElementById('tracking-form');
   const input = document.getElementById('tracking-code-input');
