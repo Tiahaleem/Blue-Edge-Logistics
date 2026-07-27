@@ -9,9 +9,13 @@ import adminRoutes from './routes/admin.routes.js';
 import trackRoutes from './routes/track.routes.js';
 import healthRoutes from './routes/health.routes.js';
 import authRoutes from './routes/auth.routes.js';
+import contactRoutes from './routes/contact.routes.js';
 import { errorHandler, notFoundHandler } from './middleware/errorHandler.js';
 
 const app = express();
+
+// Render sits behind a proxy, so rate limiting needs the real client IP.
+app.set('trust proxy', 1);
 
 app.use(helmet());
 
@@ -46,6 +50,8 @@ app.use('/api/shipments', shipmentRoutes);
 app.use('/api/track', trackRoutes);
 
 app.use('/api/admin', adminRoutes);
+
+app.use('/api/contact', contactRoutes);
 
 app.use(notFoundHandler);
 app.use(errorHandler);
